@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FeatureDemo.Core.Events;
+using FeatureDemo.Core.Models;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Navigation;
 using Xamarin.Forms;
 
@@ -8,19 +10,28 @@ namespace FeatureDemo.Core.ViewModels
     public class NewItemPageViewModel : BaseViewModel, INavigationAware
     {
         INavigationService _navigationService;
-        DelegateCommand SaveItemCommand { get; set; }
+        public DelegateCommand SaveItemCommand { get; private set; }
+        IEventAggregator _eventAgg;
 
-        public Item Item;
-
-        public NewItemPageViewModel(INavigationService navigationService)
+        Item _item; public Item Item
         {
-            _navigationService = navigationService;
+            get => _item;
+            set => SetProperty(ref _item, value);
         }
 
-        void SaveItem()
+        public NewItemPageViewModel(INavigationService navigationService, IEventAggregator eventAgg)
         {
-			MessagingCenter.Send(this, "AddItem", Item);
-            _navigationService.GoBackAsync();
+            _navigationService = navigationService;
+            _eventAgg = eventAgg;
+            Title = "New Item";
+            SaveItemCommand = new DelegateCommand(SaveItem);
+        }
+
+        async void SaveItem()
+        {
+            _eventAgg.GetEvent<SaveItemEvent>().Publish(Item);
+			//MessagingCenter.Send(this, "AddItem", Item);
+            await _navigationService.GoBackAsync();
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)

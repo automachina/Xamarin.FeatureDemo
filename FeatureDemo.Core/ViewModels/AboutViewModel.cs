@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Navigation;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutPageViewModel : BaseViewModel
     {
         INavigationService _navigationService;
 
@@ -14,18 +13,20 @@ namespace FeatureDemo.Core.ViewModels
 		/// </summary>
 		public DelegateCommand OpenWebCommand { get; private set; }
 
-        public AboutViewModel(INavigationService navigationService)
+        string XamarinUrl = "https://xamarin.com/platform";
+
+        public AboutPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
 
             Title = "About";
 
-            OpenWebCommand = new DelegateCommand(async () => await NavigateToWebpage("https://xamarin.com/platform"));
+            OpenWebCommand = new DelegateCommand(NavigateToWebpage);
         }
 
-        Task NavigateToWebpage(string url)
+        async void NavigateToWebpage()
         {
-            return _navigationService.NavigateAsync(new Uri(url));
+            await _navigationService.NavigateAsync(new Uri(XamarinUrl, UriKind.Absolute));
         }
     }
 }

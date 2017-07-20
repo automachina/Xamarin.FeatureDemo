@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using FeatureDemo.Core.Views;
-using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Xamarin.Forms;
 
@@ -43,6 +42,7 @@ namespace FeatureDemo.Core
 
             NavigationService.NavigateAsync("Root/Menu");
 
+
 			//SetMainPage();
         }
 
@@ -60,6 +60,7 @@ namespace FeatureDemo.Core
             Container.RegisterTypeForNavigation<TabbedPage>("Tabbed");
         }
 
+        /*
         public static void SetMainPage()
         {
             if (!UseMockDataStore && !Settings.IsLoggedIn)
@@ -99,5 +100,6 @@ namespace FeatureDemo.Core
                 }
             };
         }
+        */
     }
 }

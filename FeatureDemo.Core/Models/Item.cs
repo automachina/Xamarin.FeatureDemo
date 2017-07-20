@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace FeatureDemo.Core
+namespace FeatureDemo.Core.Models
 {
     public class Item : ObservableObject
     {

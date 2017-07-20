@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FeatureDemo.Core.Models;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class ItemDetailViewModel : BaseViewModel, INavigationAware
+    public class ItemDetailPageViewModel : BaseViewModel, INavigationAware
     {
         INavigationService _navigationService;
 
-        public Item Item; 
-        public ItemDetailViewModel(INavigationService navigationService)
+        Item _item; public Item Item
+        {
+            get => _item;
+            set => SetProperty(ref _item, value);
+        }
+        public ItemDetailPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }
@@ -32,7 +31,7 @@ namespace FeatureDemo.Core.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            if(parameters.TryGetValue("item", out Item)){
+            if(parameters.TryGetValue("item", out _item)){
                 RaisePropertyChanged("Item");
             }
         }

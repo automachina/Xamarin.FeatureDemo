@@ -1,12 +1,9 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Microsoft.Practices.Unity;
+using Prism.Unity;
 
 namespace FeatureDemo.Core.Droid
 {
@@ -22,7 +19,7 @@ namespace FeatureDemo.Core.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            LoadApplication(new App(new AndroidInitializer()));
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -30,4 +27,12 @@ namespace FeatureDemo.Core.Droid
             base.OnActivityResult(requestCode, resultCode, data);
         }
     }
+
+	public class AndroidInitializer : IPlatformInitializer
+	{
+		public void RegisterTypes(IUnityContainer container)
+		{
+
+		}
+	}
 }

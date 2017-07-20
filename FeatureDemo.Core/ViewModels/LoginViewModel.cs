@@ -1,27 +1,29 @@
 ﻿using System.Threading.Tasks;
-using System.Windows.Input;
-
-using Xamarin.Forms;
+using Prism.Commands;
+using Prism.Navigation;
 
 namespace FeatureDemo.Core.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public LoginViewModel()
+        INavigationService _navigationService;
+
+        public LoginViewModel(INavigationService navigationService)
         {
-            SignInCommand = new Command(async () => await SignIn());
-            NotNowCommand = new Command(App.GoToMainPage);
+            _navigationService = navigationService;
+            SignInCommand = new DelegateCommand(async () => await SignIn());
+            NotNowCommand = new DelegateCommand(async () => await _navigationService.NavigateAsync("Root"));
         }
 
         string message = string.Empty;
         public string Message
         {
             get { return message; }
-            set { message = value; OnPropertyChanged(); }
+            set { SetProperty(ref message, value); }
         }
 
-        public ICommand NotNowCommand { get; }
-        public ICommand SignInCommand { get; }
+        public DelegateCommand NotNowCommand { get; }
+        public DelegateCommand SignInCommand { get; }
 
         async Task SignIn()
         {
@@ -39,7 +41,7 @@ namespace FeatureDemo.Core.ViewModels
                 IsBusy = false;
 
                 if (Settings.IsLoggedIn)
-                    App.GoToMainPage();
+                    await _navigationService.NavigateAsync("Root");
             }
         }
 

@@ -5,23 +5,16 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
     x:Class="FeatureDemo.Core.Views.MenuPage"
+    x:Name="MenuPage"
     Title="{Binding Title}">
 	<ContentPage.Content>
 	</ContentPage.Content>
-    <ListView x:Name="MenuList" ItemsSource="{Binding MenuItems}">
+    <ListView ItemsSource="{Binding MenuItems}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Icon}" />
-                            <Label Text="{Binding Title}" />
-                        </StackLayout>
-                        <View.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="{Binding TargetUri}" />
-                        </View.GestureRecognizers>
-                    </ViewCell.View>
-                </ViewCell>
+                <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" 
+                           Command="{Binding Path=BindingContext.NavigateCommand, Source={x:Reference MenuPage}}" 
+                           CommandParameter="{Binding TargetUri}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

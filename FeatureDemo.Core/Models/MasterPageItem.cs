@@ -1,5 +1,5 @@
 ﻿using System;
-namespace FeatureDemo.Core
+namespace FeatureDemo.Core.Models
 {
 	public class MasterPageItem
 	{

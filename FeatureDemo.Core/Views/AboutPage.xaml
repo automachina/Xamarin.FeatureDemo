@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:prism="cli-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
     x:Class="FeatureDemo.Core.Views.AboutPage" 
-    xmlns:vm="clr-namespace:FeatureDemo.Core.ViewModels;" 
     Title="{Binding Title}">
-	<ContentPage.BindingContext>
-		<vm:AboutViewModel />
-	</ContentPage.BindingContext>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Prism.Mvvm;
+using FeatureDemo.Core.Models;
 
 namespace FeatureDemo.Core.ViewModels
 {

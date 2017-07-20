@@ -30,11 +30,11 @@ namespace FeatureDemo.Core
         {
             get
             {
-                return AppSettings.GetValueOrDefault<string>(AuthTokenKey, AuthTokenDefault);
+                return AppSettings.GetValueOrDefault(AuthTokenKey, AuthTokenDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(AuthTokenKey, value);
+                AppSettings.AddOrUpdateValue(AuthTokenKey, value);
             }
         }
 
@@ -43,11 +43,11 @@ namespace FeatureDemo.Core
         {
             get
             {
-                return AppSettings.GetValueOrDefault<string>(UserIdKey, UserIdDefault);
+                return AppSettings.GetValueOrDefault(UserIdKey, UserIdDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(UserIdKey, value);
+                AppSettings.AddOrUpdateValue(UserIdKey, value);
             }
         }
     }

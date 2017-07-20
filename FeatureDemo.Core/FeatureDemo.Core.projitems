@@ -53,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RootPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MasterPageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItemPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\SaveItemEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -70,5 +71,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Events\" />
   </ItemGroup>
 </Project>
