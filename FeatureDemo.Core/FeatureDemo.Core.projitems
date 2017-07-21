@@ -54,6 +54,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\MasterPageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItemPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\SaveItemEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Nav.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\INav.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using FeatureDemo.Core.Helpers;
 using FeatureDemo.Core.Views;
+using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Xamarin.Forms;
 
@@ -17,6 +20,8 @@ namespace FeatureDemo.Core
 
         public static RootPage RootPage;
 
+        private Nav Nav;
+
 		public static bool MenuIsPresented
 		{
 			get
@@ -29,7 +34,10 @@ namespace FeatureDemo.Core
 			}
 		}
 
-        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        public App(IPlatformInitializer initializer = null) : base(initializer) 
+        {
+            Nav = new Nav();
+        }
 
         protected override void OnInitialized()
         {
@@ -40,7 +48,9 @@ namespace FeatureDemo.Core
 			else
 				DependencyService.Register<CloudDataStore>();
 
-            NavigationService.NavigateAsync("Root/Menu");
+            Debug.WriteLine(Nav.To.Navigation.Root.Menu.Go);
+
+            NavigationService.NavigateAsync(Nav.To.Navigation.Root.Menu.Go);
 
 
 			//SetMainPage();
@@ -48,16 +58,20 @@ namespace FeatureDemo.Core
 
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<RootPage>("Root");
-            Container.RegisterTypeForNavigation<HomePage>("Home");
-            Container.RegisterTypeForNavigation<MenuPage>("Menu");
-            Container.RegisterTypeForNavigation<AboutPage>("About");
-            Container.RegisterTypeForNavigation<ItemsPage>("Items");
-            Container.RegisterTypeForNavigation<ItemDetailPage>("ItemDetail");
-            Container.RegisterTypeForNavigation<NewItemPage>("NewItem");
-            Container.RegisterTypeForNavigation<LoginPage>("Login");
-            Container.RegisterTypeForNavigation<NavigationPage>("Navigation");
-            Container.RegisterTypeForNavigation<TabbedPage>("Tabbed");
+            Nav = new Nav();
+            Container.RegisterTypeForNavigation<RootPage>(Nav.To.Root.Go);
+            Container.RegisterTypeForNavigation<HomePage>(Nav.To.Home.Go);
+            Container.RegisterTypeForNavigation<MenuPage>(Nav.To.Menu.Go);
+            Container.RegisterTypeForNavigation<AboutPage>(Nav.To.About.Go);
+            Container.RegisterTypeForNavigation<ItemsPage>(Nav.To.Items.Go);
+            Container.RegisterTypeForNavigation<ItemDetailPage>(Nav.To.ItemDetail.Go);
+            Container.RegisterTypeForNavigation<NewItemPage>(Nav.To.NewItem.Go);
+            Container.RegisterTypeForNavigation<LoginPage>(Nav.To.Login.Go);
+            Container.RegisterTypeForNavigation<NavigationPage>(Nav.To.Navigation.Go);
+            Container.RegisterTypeForNavigation<TabbedPage>(Nav.To.Tabbed.Go);
+            Container.RegisterTypeForNavigation<MasterDetailPage>(Nav.To.MasterDetail.Go);
+
+            Container.RegisterType<INav, Nav>(new ContainerControlledLifetimeManager());
         }
 
         /*
