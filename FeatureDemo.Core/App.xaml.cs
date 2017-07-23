@@ -48,9 +48,9 @@ namespace FeatureDemo.Core
 			else
 				DependencyService.Register<CloudDataStore>();
 
-            Debug.WriteLine(Nav.To.Navigation.Root.Menu.Go);
+            Debug.WriteLine(Nav.To.Navigation().Root().Menu().Go);
 
-            NavigationService.NavigateAsync(Nav.To.Navigation.Root.Menu.Go);
+            NavigationService.NavigateAsync(Nav.To.Navigation().Root().Menu().Go);
 
 
 			//SetMainPage();
@@ -59,19 +59,19 @@ namespace FeatureDemo.Core
         protected override void RegisterTypes()
         {
             Nav = new Nav();
-            Container.RegisterTypeForNavigation<RootPage>(Nav.To.Root.Go);
-            Container.RegisterTypeForNavigation<HomePage>(Nav.To.Home.Go);
-            Container.RegisterTypeForNavigation<MenuPage>(Nav.To.Menu.Go);
-            Container.RegisterTypeForNavigation<AboutPage>(Nav.To.About.Go);
-            Container.RegisterTypeForNavigation<ItemsPage>(Nav.To.Items.Go);
-            Container.RegisterTypeForNavigation<ItemDetailPage>(Nav.To.ItemDetail.Go);
-            Container.RegisterTypeForNavigation<NewItemPage>(Nav.To.NewItem.Go);
-            Container.RegisterTypeForNavigation<LoginPage>(Nav.To.Login.Go);
-            Container.RegisterTypeForNavigation<NavigationPage>(Nav.To.Navigation.Go);
-            Container.RegisterTypeForNavigation<TabbedPage>(Nav.To.Tabbed.Go);
-            Container.RegisterTypeForNavigation<MasterDetailPage>(Nav.To.MasterDetail.Go);
+            Container.RegisterTypeForNavigation<RootPage>(Nav.Root);
+            Container.RegisterTypeForNavigation<HomePage>(Nav.Home);
+            Container.RegisterTypeForNavigation<MenuPage>(Nav.Menu);
+            Container.RegisterTypeForNavigation<AboutPage>(Nav.About);
+            Container.RegisterTypeForNavigation<ItemsPage>(Nav.Items);
+            Container.RegisterTypeForNavigation<ItemDetailPage>(Nav.ItemDetail);
+            Container.RegisterTypeForNavigation<NewItemPage>(Nav.NewItem);
+            Container.RegisterTypeForNavigation<LoginPage>(Nav.Login);
+            Container.RegisterTypeForNavigation<NavigationPage>(Nav.Navigation);
+            Container.RegisterTypeForNavigation<TabbedPage>(Nav.Tabbed);
+            Container.RegisterTypeForNavigation<MasterDetailPage>(Nav.MasterDetail);
 
-            Container.RegisterType<INav, Nav>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<Nav>(new ContainerControlledLifetimeManager());
         }
 
         /*
