@@ -42,10 +42,10 @@ namespace FeatureDemo.Core.ViewModels
         }
 
 
-        public async void Navigate(string targetUrl)
+        public async void Navigate(string route)
         {
             CanNavigate = false;
-            await _navigationService.NavigateAsync(targetUrl, null, false, true);
+            await _navigationService.NavigateAsync(route, null, false, true);
             CanNavigate = true;
         }
     }

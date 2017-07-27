@@ -22,26 +22,43 @@ namespace FeatureDemo.Core.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
+        IEventAggregator _eventAgg;
+
         public DelegateCommand LoadItemsCommand { get; private set; }
         public DelegateCommand AddItemCommand { get; private set; }
         public DelegateCommand<Item> OnItemSelectedCommand { get; private set; }
+        public DelegateCommand<Item> DeleteItemCommand { get; private set; }
 
         public ItemsPageViewModel(INavigationService navigationService, IEventAggregator eventAgg)
             :base(navigationService)
         {
             Title = "Browse";
+            _eventAgg = eventAgg;
             Items = new ObservableRangeCollection<Item>();
-            LoadItemsCommand = new DelegateCommand(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new DelegateCommand(ExecuteLoadItemsCommand);
             AddItemCommand = new DelegateCommand(AddItem);
             OnItemSelectedCommand = new DelegateCommand<Item>(OnItemSelected);
+            DeleteItemCommand = new DelegateCommand<Item>(DeleteItem);
 
-            eventAgg.GetEvent<SaveItemEvent>().Subscribe( async (item) => {
-				Items.Add(item);
-				await DataStore.AddItemAsync(item);
+            _eventAgg.GetEvent<SaveItemEvent>().Subscribe(async (item) =>
+            {
+                Items.Add(item);
+                await DataStore.AddItemAsync(item);
+            });
+
+            _eventAgg.GetEvent<DeleteItemEvent>().Subscribe(async (item) =>
+            {
+                Items.Remove(item);
+                await DataStore.DeleteItemAsync(item.Id);
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        public async void DeleteItem(Item item)
+        {
+            await Task.Run(() => _eventAgg.GetEvent<DeleteItemEvent>().Publish(item));
+        }
+
+        public async void ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;
@@ -85,6 +102,9 @@ namespace FeatureDemo.Core.ViewModels
 
         public async void OnItemSelected(Item item)
         {
+            if (item == null)
+                return;
+
             var p = new NavigationParameters();
             p.Add("item", item);
             await _navigationService.NavigateAsync("ItemDetail",p);

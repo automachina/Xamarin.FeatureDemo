@@ -50,10 +50,7 @@ namespace FeatureDemo.Core
 			else
 				DependencyService.Register<CloudDataStore>();
 
-            var param = new NavigationParameters();
-            param.Add("master",new MenuPage());
-            param.Add("detail", new HomePage());
-            NavigationService.NavigateAsync(Nav.To.Navigation().Root().Home().Go, param, false, true);
+            NavigationService.NavigateAsync(Nav.To.Navigation().Root().Home().Go, null, false, true);
 
 
 			//SetMainPage();
@@ -76,8 +73,6 @@ namespace FeatureDemo.Core
             Container.RegisterTypeForNavigation<TabbedPage>(Nav.Tabbed);
             Container.RegisterTypeForNavigation<MasterDetailPage>(Nav.MasterDetail);
             Container.RegisterTypeForNavigation<WebViewPage>(Nav.WebView);
-
-
         }
 
         /*
