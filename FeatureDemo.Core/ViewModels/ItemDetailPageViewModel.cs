@@ -3,19 +3,15 @@ using Prism.Navigation;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class ItemDetailPageViewModel : BaseViewModel, INavigationAware
+    public class ItemDetailPageViewModel : BaseViewModel
     {
-        INavigationService _navigationService;
-
         Item _item; public Item Item
         {
             get => _item;
             set => SetProperty(ref _item, value);
         }
         public ItemDetailPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+            :base(navigationService) { }
 
         int quantity = 1;
         public int Quantity
@@ -24,21 +20,13 @@ namespace FeatureDemo.Core.ViewModels
             set { SetProperty(ref quantity, value); }
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
+        public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
-        {
-            if(parameters.TryGetValue("item", out _item)){
+            if(parameters.TryGetValue("item", out _item))
+            {
+                Title = _item.Text;
                 RaisePropertyChanged("Item");
             }
-        }
-
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
-            
         }
     }
 }

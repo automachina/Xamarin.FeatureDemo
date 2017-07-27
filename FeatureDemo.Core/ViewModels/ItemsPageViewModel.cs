@@ -12,9 +12,8 @@ using Xamarin.Forms;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class ItemsPageViewModel : BaseViewModel, INavigationAware
+    public class ItemsPageViewModel : BaseViewModel
     {
-        INavigationService _navigationService;
         public ObservableRangeCollection<Item> Items { get; set; }
 
         Item _selectedItem; public Item SelectedItem
@@ -28,8 +27,8 @@ namespace FeatureDemo.Core.ViewModels
         public DelegateCommand<Item> OnItemSelectedCommand { get; private set; }
 
         public ItemsPageViewModel(INavigationService navigationService, IEventAggregator eventAgg)
+            :base(navigationService)
         {
-            _navigationService = navigationService;
             Title = "Browse";
             Items = new ObservableRangeCollection<Item>();
             LoadItemsCommand = new DelegateCommand(async () => await ExecuteLoadItemsCommand());
@@ -40,12 +39,6 @@ namespace FeatureDemo.Core.ViewModels
 				Items.Add(item);
 				await DataStore.AddItemAsync(item);
             });
-
-            //MessagingCenter.Subscribe<NewItemPageViewModel, Item>(this, "AddItem", async (obj, item) =>
-            //{
-            //    Items.Add(item);
-            //    await DataStore.AddItemAsync(item);
-            //});
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -82,12 +75,7 @@ namespace FeatureDemo.Core.ViewModels
             await _navigationService.NavigateAsync("NewItem");
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedTo(NavigationParameters parameters)
         {
             if(Items.Count == 0)
             {
@@ -95,34 +83,11 @@ namespace FeatureDemo.Core.ViewModels
             }
         }
 
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
-            
-        }
-
         public async void OnItemSelected(Item item)
         {
             var p = new NavigationParameters();
             p.Add("item", item);
             await _navigationService.NavigateAsync("ItemDetail",p);
-        }
-
-        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
-            base.OnPropertyChanged(args);
-            //switch(args.PropertyName)
-            //{
-            //    case "SelectedItem":
-            //        if(SelectedItem != null)
-            //        {
-            //            var p = new NavigationParameters();
-            //            p.Add("item", SelectedItem);
-            //            _navigationService.NavigateAsync("Navigation/Items/ItemDetail");
-            //        }
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
     }
 }

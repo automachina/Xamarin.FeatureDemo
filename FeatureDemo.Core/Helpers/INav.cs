@@ -3,6 +3,6 @@ namespace FeatureDemo.Core.Helpers
 {
     public interface INav
     {
-        NavFluentInterface To { get; }
+        Nav.NavFluentInterface To { get; }
     }
 }

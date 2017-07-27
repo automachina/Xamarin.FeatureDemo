@@ -2,11 +2,23 @@
 using Xamarin.Forms;
 using Prism.Mvvm;
 using FeatureDemo.Core.Models;
+using Prism.Unity;
+using Prism.Navigation;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class BaseViewModel : BindableBase
+    public class BaseViewModel : BindableBase, INavigationAware
     {
+
+        protected INavigationService _navigationService { get; }
+
+        public BaseViewModel() {}
+
+        public BaseViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;    
+        }
+
         /// <summary>
         /// Get the azure service instance
         /// </summary>
@@ -42,6 +54,18 @@ namespace FeatureDemo.Core.ViewModels
                 default:
                     return default(T);
             }
+        }
+
+        public virtual void OnNavigatedFrom(NavigationParameters parameters)
+        {
+        }
+
+        public virtual void OnNavigatedTo(NavigationParameters parameters)
+        {
+        }
+
+        public virtual void OnNavigatingTo(NavigationParameters parameters)
+        {
         }
     }
 }

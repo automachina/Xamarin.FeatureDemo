@@ -6,11 +6,9 @@ namespace FeatureDemo.Core.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        INavigationService _navigationService;
-
         public LoginViewModel(INavigationService navigationService)
+            :base(navigationService)
         {
-            _navigationService = navigationService;
             SignInCommand = new DelegateCommand(async () => await SignIn());
             NotNowCommand = new DelegateCommand(async () => await _navigationService.NavigateAsync("Root"));
         }

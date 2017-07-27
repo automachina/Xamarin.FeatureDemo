@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Linq;
+using System.Text;
+using System.Net;
 
 namespace FeatureDemo.Core.Helpers
 {
@@ -9,15 +11,15 @@ public class Nav
 	{
 		public Nav()
 		{
-			Pages = new Dictionary<string, string>();
+            Pages = new MultiValueDictionary<string, string>();
 		}
-		private Dictionary<string, string> Pages { get; set; }
+        private MultiValueDictionary<string, string> Pages { get; set; }
 
 		public NavFluentInterface To
 		{
 			get
 			{
-				Pages?.Clear();
+                Pages?.Clear();
 				return new NavFluentInterface(this);
 			}
 		}
@@ -35,6 +37,7 @@ public class Nav
 		public static string NewItem => GetPropertyName();
 		public static string MasterDetail => GetPropertyName();
 		public static string Login => GetPropertyName();
+        public static string WebView => GetPropertyName();
 
 		public class NavFluentInterface
 		{
@@ -110,6 +113,12 @@ public class Nav
 				return this;
 			}
 
+            public NavFluentInterface WebView(string parameters = null)
+            {
+                _nav.Pages.Add(Nav.WebView, parameters);
+                return this;
+            }
+
 			public string Go
 			{
 				get
@@ -120,7 +129,8 @@ public class Nav
 					var path = new StringBuilder();
 					foreach (var page in _nav.Pages)
 					{
-						path.Append(page.Value != null ? $"{page.Key}?{page.Value}/" : $"{page.Key}/");
+                        var parm = page.Value != null ? Uri.EscapeDataString(page.Value) : null;
+						path.Append(parm != null ? $"{page.Key}?{parm}/" : $"{page.Key}/");
 					}
 
 					return path.ToString().Trim('/');

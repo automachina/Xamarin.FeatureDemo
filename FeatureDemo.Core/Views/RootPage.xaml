@@ -5,5 +5,8 @@
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
     xmlns:local="clr-namespace:FeatureDemo.Core.Views;assembly=FeatureDemo.Core"
-    x:Class="FeatureDemo.Core.Views.RootPage">
+    x:Class="FeatureDemo.Core.Views.RootPage"
+    Title="{Binding Title}"
+    IsPresented="{Binding IsPresented, Mode=TwoWay}"
+    >
 </MasterDetailPage>

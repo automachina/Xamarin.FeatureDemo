@@ -7,9 +7,8 @@ using Xamarin.Forms;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class NewItemPageViewModel : BaseViewModel, INavigationAware
+    public class NewItemPageViewModel : BaseViewModel
     {
-        INavigationService _navigationService;
         public DelegateCommand SaveItemCommand { get; private set; }
         IEventAggregator _eventAgg;
 
@@ -20,8 +19,8 @@ namespace FeatureDemo.Core.ViewModels
         }
 
         public NewItemPageViewModel(INavigationService navigationService, IEventAggregator eventAgg)
+            : base(navigationService)
         {
-            _navigationService = navigationService;
             _eventAgg = eventAgg;
             Title = "New Item";
             SaveItemCommand = new DelegateCommand(SaveItem);
@@ -30,27 +29,16 @@ namespace FeatureDemo.Core.ViewModels
         async void SaveItem()
         {
             _eventAgg.GetEvent<SaveItemEvent>().Publish(Item);
-			//MessagingCenter.Send(this, "AddItem", Item);
             await _navigationService.GoBackAsync();
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedTo(NavigationParameters parameters)
         {
             Item = new Item() 
             {
 				Text = "Item name",
 				Description = "This is a nice description"
             };
-        }
-
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
-            
         }
     }
 }

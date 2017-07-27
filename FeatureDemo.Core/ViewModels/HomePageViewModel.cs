@@ -5,10 +5,8 @@ namespace FeatureDemo.Core.ViewModels
 {
     public class HomePageViewModel : BaseViewModel
     {
-        INavigationService _navigationService;
-        public HomePageViewModel(INavigationService navigationService)
+        public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
             Title = "Feature Demo Home";
         }
     }

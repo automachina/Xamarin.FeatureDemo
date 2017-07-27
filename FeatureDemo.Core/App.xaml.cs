@@ -3,7 +3,9 @@ using System.Diagnostics;
 using FeatureDemo.Core.Helpers;
 using FeatureDemo.Core.Views;
 using Microsoft.Practices.Unity;
+using Prism.Navigation;
 using Prism.Unity;
+using Prism.Common;
 using Xamarin.Forms;
 
 namespace FeatureDemo.Core
@@ -48,9 +50,10 @@ namespace FeatureDemo.Core
 			else
 				DependencyService.Register<CloudDataStore>();
 
-            Debug.WriteLine(Nav.To.Navigation().Root().Menu().Go);
-
-            NavigationService.NavigateAsync(Nav.To.Navigation().Root().Menu().Go);
+            var param = new NavigationParameters();
+            param.Add("master",new MenuPage());
+            param.Add("detail", new HomePage());
+            NavigationService.NavigateAsync(Nav.To.Navigation().Root().Home().Go, param, false, true);
 
 
 			//SetMainPage();
@@ -58,7 +61,9 @@ namespace FeatureDemo.Core
 
         protected override void RegisterTypes()
         {
-            Nav = new Nav();
+            Container.RegisterType<Nav>(new ContainerControlledLifetimeManager());
+            Nav = Container.Resolve<Nav>();
+
             Container.RegisterTypeForNavigation<RootPage>(Nav.Root);
             Container.RegisterTypeForNavigation<HomePage>(Nav.Home);
             Container.RegisterTypeForNavigation<MenuPage>(Nav.Menu);
@@ -67,11 +72,12 @@ namespace FeatureDemo.Core
             Container.RegisterTypeForNavigation<ItemDetailPage>(Nav.ItemDetail);
             Container.RegisterTypeForNavigation<NewItemPage>(Nav.NewItem);
             Container.RegisterTypeForNavigation<LoginPage>(Nav.Login);
-            Container.RegisterTypeForNavigation<NavigationPage>(Nav.Navigation);
+            Container.RegisterTypeForNavigation<CustomNavigationPage>(Nav.Navigation);
             Container.RegisterTypeForNavigation<TabbedPage>(Nav.Tabbed);
             Container.RegisterTypeForNavigation<MasterDetailPage>(Nav.MasterDetail);
+            Container.RegisterTypeForNavigation<WebViewPage>(Nav.WebView);
 
-            Container.RegisterType<Nav>(new ContainerControlledLifetimeManager());
+
         }
 
         /*
