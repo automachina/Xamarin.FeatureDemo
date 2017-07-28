@@ -20,12 +20,15 @@
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout Padding="10">
-								<Label Text="{Binding Text}" LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-								<Label Text="{Binding Description}" LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-							</StackLayout>
+                            <StackLayout Orientation="Horizontal">
+    							<StackLayout Padding="10">
+    								<Label Text="{Binding Text}" LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+    								<Label Text="{Binding Description}" LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+    							</StackLayout>
+                                <Button Image="fileclose.png" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference BrowseItemsPage}}" CommandParameter="{Binding .}"/>
+                            </StackLayout>
                              <!--<ViewCell.ContextActions>
                                 <MenuItem Text="Delete" Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference BrowseItemsPage}}" CommandParameter="{Binding .}" IsDestructive="false" />
                             </ViewCell.ContextActions>-->

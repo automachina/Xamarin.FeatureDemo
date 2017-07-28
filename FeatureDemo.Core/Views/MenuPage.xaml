@@ -9,7 +9,7 @@
     Title="{Binding Title}">
 	<ContentPage.Content>
 	</ContentPage.Content>
-    <ListView ItemsSource="{Binding MenuItems}">
+    <ListView ItemsSource="{Binding MenuItems}" SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" 
