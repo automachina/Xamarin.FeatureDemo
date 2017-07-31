@@ -46,6 +46,15 @@ namespace FeatureDemo.Core.ViewModels
                 await DataStore.AddItemAsync(item);
             });
 
+            _eventAgg.GetEvent<UpdateItemEvent>().Subscribe(async (item) =>
+            {
+                if (Items.Contains(item))
+                {
+                    Items.Replace(item);
+                    await DataStore.UpdateItemAsync(item);
+                }
+            });
+
             _eventAgg.GetEvent<DeleteItemEvent>().Subscribe(async (item) =>
             {
                 Items.Remove(item);

@@ -4,10 +4,11 @@ using Prism.Mvvm;
 using FeatureDemo.Core.Models;
 using Prism.Unity;
 using Prism.Navigation;
+using System.Threading.Tasks;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class BaseViewModel : BindableBase, INavigationAware
+    public class BaseViewModel : BindableBase, INavigationAware, IConfirmNavigationAsync, IConfirmNavigation
     {
 
         protected INavigationService _navigationService { get; }
@@ -66,6 +67,16 @@ namespace FeatureDemo.Core.ViewModels
 
         public virtual void OnNavigatingTo(NavigationParameters parameters)
         {
+        }
+
+        public virtual Task<bool> CanNavigateAsync(NavigationParameters parameters)
+        {
+            return Task.FromResult(true);
+        }
+
+        public bool CanNavigate(NavigationParameters parameters)
+        {
+            return true;
         }
     }
 }

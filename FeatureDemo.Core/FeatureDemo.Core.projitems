@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WebViewPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DeleteItemEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\UpdateItemEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

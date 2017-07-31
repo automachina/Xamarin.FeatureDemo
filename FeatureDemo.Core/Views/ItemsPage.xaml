@@ -27,7 +27,8 @@
     								<Label Text="{Binding Description}" LineBreakMode="NoWrap" 
                                     Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
     							</StackLayout>
-                                <Button Image="fileclose.png" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference BrowseItemsPage}}" CommandParameter="{Binding .}"/>
+                                <Button Image="fileclose.png" HorizontalOptions="EndAndExpand" 
+                                Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference BrowseItemsPage}}" CommandParameter="{Binding .}"/>
                             </StackLayout>
                              <!--<ViewCell.ContextActions>
                                 <MenuItem Text="Delete" Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference BrowseItemsPage}}" CommandParameter="{Binding .}" IsDestructive="false" />
