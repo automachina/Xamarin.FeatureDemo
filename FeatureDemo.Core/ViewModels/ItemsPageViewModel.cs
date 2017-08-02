@@ -26,8 +26,9 @@ namespace FeatureDemo.Core.ViewModels
 
         public DelegateCommand LoadItemsCommand { get; private set; }
         public DelegateCommand AddItemCommand { get; private set; }
-        public DelegateCommand<Item> OnItemSelectedCommand { get; private set; }
+        public DelegateCommand<Item> ItemSelectedCommand { get; private set; }
         public DelegateCommand<Item> DeleteItemCommand { get; private set; }
+        public DelegateCommand<Item> ItemTappedCommand { get; private set; }
 
         public ItemsPageViewModel(INavigationService navigationService, IEventAggregator eventAgg)
             :base(navigationService)
@@ -37,10 +38,11 @@ namespace FeatureDemo.Core.ViewModels
             Items = new ObservableRangeCollection<Item>();
             LoadItemsCommand = new DelegateCommand(ExecuteLoadItemsCommand);
             AddItemCommand = new DelegateCommand(AddItem);
-            OnItemSelectedCommand = new DelegateCommand<Item>(OnItemSelected);
+            ItemSelectedCommand = new DelegateCommand<Item>(ItemSelected);
+            ItemTappedCommand = new DelegateCommand<Item>(ItemTapped);
             DeleteItemCommand = new DelegateCommand<Item>(DeleteItem);
 
-            _eventAgg.GetEvent<SaveItemEvent>().Subscribe(async (item) =>
+            _eventAgg.GetEvent<AddItemEvent>().Subscribe(async (item) =>
             {
                 Items.Add(item);
                 await DataStore.AddItemAsync(item);
@@ -61,6 +63,26 @@ namespace FeatureDemo.Core.ViewModels
                 await DataStore.DeleteItemAsync(item.Id);
             });
         }
+
+        private async void ItemTapped(Item item)
+        {
+			if (item == null)
+				return;
+
+			var p = new NavigationParameters();
+			p.Add("item", item);
+			await _navigationService.NavigateAsync("ItemDetail", p);
+        }
+
+        public async void ItemSelected(Item item)
+		{
+			if (item == null)
+				return;
+
+			var p = new NavigationParameters();
+			p.Add("item", item);
+			await _navigationService.NavigateAsync("ItemDetail", p);
+		}
 
         public async void DeleteItem(Item item)
         {
@@ -107,16 +129,6 @@ namespace FeatureDemo.Core.ViewModels
             {
                 LoadItemsCommand.Execute();   
             }
-        }
-
-        public async void OnItemSelected(Item item)
-        {
-            if (item == null)
-                return;
-
-            var p = new NavigationParameters();
-            p.Add("item", item);
-            await _navigationService.NavigateAsync("ItemDetail",p);
         }
     }
 }

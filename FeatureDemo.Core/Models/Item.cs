@@ -1,10 +1,11 @@
 ﻿using System;
 
 using Newtonsoft.Json;
+using Prism.Mvvm;
 
 namespace FeatureDemo.Core.Models
 {
-    public class Item : ObservableObject
+    public class Item : BindableBase
     {
         string id = string.Empty;
 

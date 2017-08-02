@@ -4,9 +4,9 @@ using Prism.Events;
 
 namespace FeatureDemo.Core.Events
 {
-    public class SaveItemEvent : PubSubEvent<Item>
+    public class AddItemEvent : PubSubEvent<Item>
     {
-        public SaveItemEvent()
+        public AddItemEvent()
         {
         }
     }

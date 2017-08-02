@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FeatureDemo.Core.ViewModels
 {
-    public class BaseViewModel : BindableBase, INavigationAware, IConfirmNavigationAsync, IConfirmNavigation
+    public class BaseViewModel : BindableBase, INavigationAware, IConfirmNavigationAsync, IConfirmNavigation, IDestructible
     {
 
         protected INavigationService _navigationService { get; }
@@ -77,6 +77,11 @@ namespace FeatureDemo.Core.ViewModels
         public bool CanNavigate(NavigationParameters parameters)
         {
             return true;
+        }
+
+        public virtual void Destroy()
+        {
+            
         }
     }
 }

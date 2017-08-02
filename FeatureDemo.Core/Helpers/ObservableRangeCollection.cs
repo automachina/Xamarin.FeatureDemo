@@ -85,7 +85,13 @@ namespace FeatureDemo.Core
         /// </summary> 
         public void Replace(T item)
         {
-            ReplaceRange(new T[] { item });
+            var index = this.IndexOf(item);
+            if (index < 0)
+                return;
+
+            this.SetItem(index, item);
+
+            //ReplaceRange(new T[] { item });
         }
 
         /// <summary> 

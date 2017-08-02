@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
@@ -53,7 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RootPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MasterPageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewItemPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Events\SaveItemEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\AddItemEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Nav.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\INav.cs" />
@@ -69,6 +68,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Events\UpdateItemEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IGitHubApi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

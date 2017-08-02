@@ -36,11 +36,18 @@ namespace FeatureDemo.Core.ViewModels
             set => SetProperty(ref _labelsVisible, value);
         }
 
+        string _editToolbarText; public string EditToolbarText
+        {
+            get => _editToolbarText;
+            set => SetProperty(ref _editToolbarText, value);
+        }
+
         IEventAggregator _eventAgg;
         IPageDialogService _dialogService;
 
         public DelegateCommand EditItemCommand { get; private set; }
         public DelegateCommand UpdateItemCommand { get; private set; }
+        public DelegateCommand EditUpdateItemCommand { get; private set; }
 
         public ItemDetailPageViewModel(INavigationService navigationService, IEventAggregator eventAgg, IPageDialogService dialogService) 
             :base(navigationService) 
@@ -48,12 +55,31 @@ namespace FeatureDemo.Core.ViewModels
             _eventAgg = eventAgg;
             _dialogService = dialogService;
             EditItemCommand = new DelegateCommand(EditMode);
-            UpdateItemCommand = new DelegateCommand(Save);
+            UpdateItemCommand = new DelegateCommand(Update);
+            EditUpdateItemCommand = new DelegateCommand(EditUpdate);
+            EditToolbarText = "Edit";
             Editing = false;
             LabelsVisible = true;
         }
 
-        private void Save()
+        private void EditUpdate()
+        {
+            if (!Editing)
+            {
+                Editing = true;
+                LabelsVisible = false;
+                EditToolbarText = "Save";
+            }
+            else
+            {
+                _eventAgg.GetEvent<UpdateItemEvent>().Publish(Item);
+                Editing = false;
+                LabelsVisible = true;
+                EditToolbarText = "Edit";
+            }
+        }
+
+        private void Update()
         {
             _eventAgg.GetEvent<UpdateItemEvent>().Publish(Item);
             IsDirty = false;
@@ -73,8 +99,15 @@ namespace FeatureDemo.Core.ViewModels
             set { SetProperty(ref quantity, value); }
         }
 
+        void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            IsDirty = true;
+        }
+
         protected override void OnPropertyChanged(PropertyChangedEventArgs args)
         {
+            base.OnPropertyChanged(args);
+
             switch(args.PropertyName)
             {
                 case "Item":
@@ -89,6 +122,7 @@ namespace FeatureDemo.Core.ViewModels
             {
                 Title = _item.Text;
                 RaisePropertyChanged("Item");
+                _item.PropertyChanged += Item_PropertyChanged;
             }
         }
 

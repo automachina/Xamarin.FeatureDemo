@@ -28,7 +28,7 @@ namespace FeatureDemo.Core.ViewModels
 
         async void SaveItem()
         {
-            _eventAgg.GetEvent<SaveItemEvent>().Publish(Item);
+            _eventAgg.GetEvent<AddItemEvent>().Publish(Item);
             await _navigationService.GoBackAsync();
         }
 
