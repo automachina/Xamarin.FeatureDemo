@@ -66,7 +66,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WebViewPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DeleteItemEvent.cs" />
+<<<<<<< HEAD
     <Compile Include="$(MSBuildThisFileDirectory)Events\UpdateItemEvent.cs" />
+=======
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IGitHubApi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+>>>>>>> aa9b3d7... Updated IGitHubApi.cs
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
