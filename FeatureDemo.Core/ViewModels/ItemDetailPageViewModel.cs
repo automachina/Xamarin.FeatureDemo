@@ -12,6 +12,7 @@ namespace FeatureDemo.Core.ViewModels
 {
     public class ItemDetailPageViewModel : BaseViewModel
     {
+        Item _cachedItem;
         Item _item; public Item Item
         {
             get => _item;
@@ -45,8 +46,6 @@ namespace FeatureDemo.Core.ViewModels
         IEventAggregator _eventAgg;
         IPageDialogService _dialogService;
 
-        public DelegateCommand EditItemCommand { get; private set; }
-        public DelegateCommand UpdateItemCommand { get; private set; }
         public DelegateCommand EditUpdateItemCommand { get; private set; }
 
         public ItemDetailPageViewModel(INavigationService navigationService, IEventAggregator eventAgg, IPageDialogService dialogService) 
@@ -54,8 +53,6 @@ namespace FeatureDemo.Core.ViewModels
         {
             _eventAgg = eventAgg;
             _dialogService = dialogService;
-            EditItemCommand = new DelegateCommand(EditMode);
-            UpdateItemCommand = new DelegateCommand(Update);
             EditUpdateItemCommand = new DelegateCommand(EditUpdate);
             EditToolbarText = "Edit";
             Editing = false;
@@ -75,20 +72,9 @@ namespace FeatureDemo.Core.ViewModels
                 _eventAgg.GetEvent<UpdateItemEvent>().Publish(Item);
                 Editing = false;
                 LabelsVisible = true;
+                IsDirty = false;
                 EditToolbarText = "Edit";
             }
-        }
-
-        private void Update()
-        {
-            _eventAgg.GetEvent<UpdateItemEvent>().Publish(Item);
-            IsDirty = false;
-        }
-
-        private void EditMode()
-        {
-            Editing = !Editing;
-            LabelsVisible = !LabelsVisible;
         }
 
         int quantity = 1;
@@ -104,23 +90,12 @@ namespace FeatureDemo.Core.ViewModels
             IsDirty = true;
         }
 
-        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
-            base.OnPropertyChanged(args);
-
-            switch(args.PropertyName)
-            {
-                case "Item":
-                    IsDirty = true;
-                    break;    
-            }
-        }
-
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             if(parameters.TryGetValue("item", out _item))
             {
                 Title = _item.Text;
+                _cachedItem = _item;
                 RaisePropertyChanged("Item");
                 _item.PropertyChanged += Item_PropertyChanged;
             }
@@ -134,6 +109,31 @@ namespace FeatureDemo.Core.ViewModels
                 return answer;
             }
             return Task.FromResult(true);
+        }
+
+        public override async void OnNavigatedFrom(NavigationParameters parameters)
+        {
+			if (IsDirty)
+			{
+                var answer = await _dialogService.DisplayAlertAsync("Unsaved Changes!", $"You have unsaved changes.\nWould you like to discard these changes?", "Yes", "No");
+                if(!answer)
+                {
+                    _eventAgg.GetEvent<UpdateItemEvent>().Publish(Item);
+                }
+                else
+                {
+                    Item.Description = _cachedItem.Description;
+                    Item.Text = _cachedItem.Text;
+                }
+			}
+        }
+
+        public override void Destroy()
+        {
+            if(_item != null)
+            {
+                _item.PropertyChanged -= Item_PropertyChanged;
+            }
         }
     }
 }

@@ -38,6 +38,8 @@ public class Nav
 		public static string MasterDetail => GetPropertyName();
 		public static string Login => GetPropertyName();
         public static string WebView => GetPropertyName();
+        public static string RepoSearch => GetPropertyName();
+        public static string Map => GetPropertyName();
 
 		public class NavFluentInterface
 		{
@@ -118,6 +120,18 @@ public class Nav
                 _nav.Pages.Add(Nav.WebView, parameters);
                 return this;
             }
+
+            public NavFluentInterface RepoSearch(string parameters = null)
+            {
+                _nav.Pages.Add(Nav.RepoSearch, parameters);
+                return this;
+            }
+
+			public NavFluentInterface Map(string parameters = null)
+			{
+                _nav.Pages.Add(Nav.Map, parameters);
+				return this;
+			}
 
 			public string Go
 			{

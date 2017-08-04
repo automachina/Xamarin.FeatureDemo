@@ -67,8 +67,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Events\DeleteItemEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\UpdateItemEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IGitHubApi.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FlatButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RepositorySearchPage.xaml.cs">
+      <DependentUpon>RepositorySearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RepositorySearchPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -92,8 +99,15 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\WebViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RepositorySearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Events\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
   </ItemGroup>
 </Project>

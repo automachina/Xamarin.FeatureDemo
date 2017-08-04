@@ -15,10 +15,10 @@ namespace FeatureDemo.Core.ViewModels
 
         private Nav Nav { get; }
 
-        private bool canNavigate; public bool CanNavigate
+        private bool _canNavigate; public bool CanNavigateProp
         {
-            get => canNavigate;
-            set => SetProperty(ref canNavigate, value);
+            get => _canNavigate;
+            set => SetProperty(ref _canNavigate, value);
         }
 
         List<MasterPageItem> _menuItems; public List<MasterPageItem> MenuItems
@@ -35,18 +35,20 @@ namespace FeatureDemo.Core.ViewModels
             MenuItems = new List<MasterPageItem>()
             {
                 new MasterPageItem("Browse Items", "profile_generic.png", Nav.To.Items().Go),
-                new MasterPageItem("About", OnPlatform("tab_about.png","about.png"), Nav.To.About("Message=Learn more...").Go)
+                new MasterPageItem("About", OnPlatform("tab_about.png","icon.png"), Nav.To.About("Message=Learn more...").Go),
+                new MasterPageItem("Search Repos", "github-logo.png", Nav.To.RepoSearch().Go),
+                new MasterPageItem("Find ATM's", "icon.png", Nav.To.Map().Go)
             };
-            NavigateCommand = new DelegateCommand<string>(Navigate).ObservesCanExecute(() => CanNavigate);
-            CanNavigate = true;
+            NavigateCommand = new DelegateCommand<string>(Navigate).ObservesCanExecute(() => CanNavigateProp);
+            CanNavigateProp = true;
         }
 
 
         public async void Navigate(string route)
         {
-            CanNavigate = false;
+            CanNavigateProp = false;
             await _navigationService.NavigateAsync(route, null, false, true);
-            CanNavigate = true;
+            CanNavigateProp = true;
         }
     }
 }

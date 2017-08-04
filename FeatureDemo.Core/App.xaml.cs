@@ -73,6 +73,8 @@ namespace FeatureDemo.Core
             Container.RegisterTypeForNavigation<TabbedPage>(Nav.Tabbed);
             Container.RegisterTypeForNavigation<MasterDetailPage>(Nav.MasterDetail);
             Container.RegisterTypeForNavigation<WebViewPage>(Nav.WebView);
+            Container.RegisterTypeForNavigation<RepositorySearchPage>(Nav.RepoSearch);
+            Container.RegisterTypeForNavigation<MapPage>(Nav.Map);
         }
 
         /*

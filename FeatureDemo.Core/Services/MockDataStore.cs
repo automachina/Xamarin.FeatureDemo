@@ -40,8 +40,12 @@ namespace FeatureDemo.Core
         public async Task<bool> UpdateItemAsync(Item item)
         {
             var _item = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            if (_item == null)
+                return await Task.FromResult(false);
+
+            var index = items.IndexOf(_item);
             items.Remove(_item);
-            items.Add(item);
+            items.Insert(index, item);
 
             return await Task.FromResult(true);
         }

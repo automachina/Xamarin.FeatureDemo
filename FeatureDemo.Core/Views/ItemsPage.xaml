@@ -2,6 +2,7 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:FeatureDemo.Core.Controls"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
     xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
@@ -27,7 +28,7 @@
     								<Label Text="{Binding Description}" LineBreakMode="NoWrap" 
                                     Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
     							</StackLayout>
-                                <Button Image="fileclose.png" HorizontalOptions="EndAndExpand" 
+                                <c:FlatButton Image="fileclose.png" HorizontalOptions="EndAndExpand" BorderWidth="0" BackgroundColor="Transparent" 
                                 Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference BrowseItemsPage}}" CommandParameter="{Binding .}"/>
                             </StackLayout>
                              <!--<ViewCell.ContextActions>
