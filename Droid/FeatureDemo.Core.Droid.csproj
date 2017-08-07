@@ -255,6 +255,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\github-logo.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\github-logo.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\github-logo.png" />
+    <AndroidResource Include="Resources\drawable\atm_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\atm_pin.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\atm_pin.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\atm_pin.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\atm_pin.png" />
   </ItemGroup>
   <Import Project="..\FeatureDemo.Core\FeatureDemo.Core.projitems" Label="Shared" Condition="Exists('..\FeatureDemo.Core\FeatureDemo.Core.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

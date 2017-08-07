@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
     x:Class="FeatureDemo.Core.Views.MenuPage"
     x:Name="MenuPage"
     Title="{Binding Title}">
@@ -12,10 +13,29 @@
     <ListView ItemsSource="{Binding MenuItems}" SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" 
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="{Binding IconSource}" />
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label Text="{Binding Title}" HorizontalOptions="FillAndExpand" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                            <!--<Label Text="{Binding Description}" FontSize="Small" LineBreakMode="TailTruncation" TextColor="Gray" />-->
+                        </StackLayout>
+                    </StackLayout>
+                
+                    <!--<ViewCell.ContextActions>
+                        <MenuItem Text="Open" Command="{Binding Path=BindingContext.OpenRepoCommand, Source={x:Reference RepoSearch}}" CommandParameter="{Binding HtmlUrl}" />
+                    </ViewCell.ContextActions>-->
+                </ViewCell>
+                <!--<ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}"
                            Command="{Binding Path=BindingContext.NavigateCommand, Source={x:Reference MenuPage}}" 
-                           CommandParameter="{Binding TargetUri}" />
+                           CommandParameter="{Binding TargetUri}" />  -->
             </DataTemplate>
         </ListView.ItemTemplate>
+         <ListView.Behaviors>
+            <b:EventToCommandBehavior
+                EventName="ItemTapped"
+                Command="{Binding NavigateCommand}"
+                EventArgsParameterPath="Item.TargetUri" />
+        </ListView.Behaviors>
     </ListView>
 </ContentPage>

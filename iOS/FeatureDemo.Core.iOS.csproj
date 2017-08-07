@@ -210,6 +210,9 @@
     <BundleResource Include="Resources\github-logo%403.png" />
     <BundleResource Include="Resources\github-logo%402.png" />
     <BundleResource Include="Resources\github-logo.png" />
+    <BundleResource Include="Resources\atm_pin.png" />
+    <BundleResource Include="Resources\atm_pin%402x.png" />
+    <BundleResource Include="Resources\atm_pin%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
