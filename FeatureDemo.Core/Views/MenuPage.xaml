@@ -15,7 +15,7 @@
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                        <Image Source="{Binding IconSource}" />
+                        <Image Source="{Binding IconSource}" MinimumHeightRequest="25" MinimumWidthRequest="25" />
                         <StackLayout Orientation="Vertical" Spacing="0">
                             <Label Text="{Binding Title}" HorizontalOptions="FillAndExpand" FontAttributes="Bold" LineBreakMode="TailTruncation" />
                             <!--<Label Text="{Binding Description}" FontSize="Small" LineBreakMode="TailTruncation" TextColor="Gray" />-->

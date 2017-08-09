@@ -94,9 +94,6 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="RestEase">
-      <HintPath>..\packages\RestEase.1.4.1\lib\netstandard1.1\RestEase.dll</HintPath>
-    </Reference>
     <Reference Include="Prism">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\Xamarin.iOS10\Prism.dll</HintPath>
     </Reference>
@@ -157,21 +154,6 @@
     <Reference Include="Plugin.Connectivity">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.2\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core">
-      <HintPath>..\packages\SQLitePCLRaw.core.1.1.7\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.internal">
-      <HintPath>..\packages\SQLitePCLRaw.provider.internal.ios_unified.1.1.7\lib\Xamarin.iOS10\SQLitePCLRaw.provider.internal.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.lib.e_sqlite3">
-      <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.ios_unified.static.1.1.7\lib\Xamarin.iOS10\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_e_sqlite3">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.7\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.7\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
-    </Reference>
     <Reference Include="Splat">
       <HintPath>..\packages\Splat.2.0.0\lib\Xamarin.iOS10\Splat.dll</HintPath>
     </Reference>
@@ -183,6 +165,24 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Maps.iOS">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="RestEase">
+      <HintPath>..\packages\RestEase.1.4.2\lib\netstandard1.1\RestEase.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.lib.e_sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.ios_unified.static.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.internal">
+      <HintPath>..\packages\SQLitePCLRaw.provider.internal.ios_unified.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.provider.internal.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_e_sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -207,9 +207,9 @@
     <BundleResource Include="Resources\fileclose.png" />
     <BundleResource Include="Resources\fileclose%402x.png" />
     <BundleResource Include="Resources\fileclose%403x.png" />
-    <BundleResource Include="Resources\github-logo%403.png" />
-    <BundleResource Include="Resources\github-logo%402.png" />
-    <BundleResource Include="Resources\github-logo.png" />
+    <BundleResource Include="Resources\github_logo%403.png" />
+    <BundleResource Include="Resources\github_logo%402.png" />
+    <BundleResource Include="Resources\github_logo.png" />
     <BundleResource Include="Resources\atm_pin.png" />
     <BundleResource Include="Resources\atm_pin%402x.png" />
     <BundleResource Include="Resources\atm_pin%403x.png" />

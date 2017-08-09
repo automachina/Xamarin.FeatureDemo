@@ -36,7 +36,7 @@ namespace FeatureDemo.Core.ViewModels
             {
                 new MasterPageItem("Browse Items", "profile_generic.png", Nav.To.Items().Go),
                 new MasterPageItem("About", OnPlatform("tab_about.png","icon.png"), Nav.To.About("Message=Learn more...").Go),
-                new MasterPageItem("Search Repos", "github-logo.png", Nav.To.RepoSearch().Go),
+                new MasterPageItem("Search Repos", "github_logo.png", Nav.To.RepoSearch().Go),
                 new MasterPageItem("Find ATM's", "atm_pin.png", Nav.To.Map().Go)
             };
             NavigateCommand = new DelegateCommand<string>(Navigate).ObservesCanExecute(() => CanNavigateProp);
