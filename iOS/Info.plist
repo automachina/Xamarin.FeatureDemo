@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>FeatureDemo</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.nwiservices.featuredemo</string>
+	<string>com.nwiservicescuso.featuredemo</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -74,8 +74,8 @@
 		<string>MKDirectionsModeOther</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
-    	<string>Can we use your location</string>
+	<string>Can we use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    	<string>We are using your location</string>
+	<string>We are using your location</string>
 </dict>
 </plist>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FeatureDemo.Core.Models;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using TK.CustomMap;
 
 namespace FeatureDemo.Core
 {
@@ -79,6 +80,16 @@ namespace FeatureDemo.Core
             var response = await client.DeleteAsync($"api/item/{id}");
 
             return response.IsSuccessStatusCode ? true : false;
+        }
+
+        public Task<IEnumerable<TKCustomMapPin>> GetAtmsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TKCustomMapPin> GetAtm(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

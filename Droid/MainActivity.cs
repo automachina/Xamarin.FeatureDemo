@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Microsoft.Practices.Unity;
+using Plugin.Permissions;
 using Prism.Unity;
 
 namespace FeatureDemo.Core.Droid
@@ -18,6 +19,7 @@ namespace FeatureDemo.Core.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.FormsMaps.Init(this, bundle);
 
             LoadApplication(new App(new AndroidInitializer()));
         }
@@ -25,6 +27,11 @@ namespace FeatureDemo.Core.Droid
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

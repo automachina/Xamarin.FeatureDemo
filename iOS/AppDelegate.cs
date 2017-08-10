@@ -2,6 +2,10 @@
 using Microsoft.Practices.Unity;
 using Prism.Unity;
 using UIKit;
+using TK.CustomMap.iOSUnified;
+using Xamarin;
+using Xamarin.Forms;
+        
 
 namespace FeatureDemo.Core.iOS
 {
@@ -10,7 +14,10 @@ namespace FeatureDemo.Core.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+            Forms.Init();
+            FormsMaps.Init();
+            TKCustomMapRenderer.InitMapRenderer();
+            NativePlacesApi.Init();
             LoadApplication(new App(new iOSInitializer()));
 
 
