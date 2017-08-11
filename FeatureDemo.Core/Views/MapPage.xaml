@@ -10,7 +10,7 @@
 	<ContentPage.Content>
 	</ContentPage.Content>
     <StackLayout>
-        <SearchBar HorizontalOptions="FillAndExpand" />
-        <maps:TKCustomMap x:Name="AtmMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MapType="Hybrid" CustomPins="{Binding Pins}" MapCenter="{Binding CurrentLocation}"/>
+        <Slider Value="{Binding ZoomLevel}" HorizontalOptions="FillAndExpand" Minimum="0" Maximum="1" />
+        <maps:TKCustomMap x:Name="AtmMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MapType="Hybrid" CustomPins="{Binding Pins}" MapCenter="{Binding CurrentLocation}" HasZoomEnabled="true" MapRegion="{Binding CurrentRegion, Mode=TwoWay}"/>
     </StackLayout>
 </ContentPage>
