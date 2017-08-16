@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True" 
     x:Class="FeatureDemo.Core.Views.RepositorySearchPage"
     Title="{Binding Title}"
@@ -28,14 +29,20 @@
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
-                        <ViewCell.ContextActions>
+ <!--                   <ViewCell.ContextActions>
                             <MenuItem Text="Open" Command="{Binding Path=BindingContext.OpenRepoCommand, Source={x:Reference RepoSearch}}" CommandParameter="{Binding HtmlUrl}" />
-                        </ViewCell.ContextActions>
+                        </ViewCell.ContextActions> -->
                     </ViewCell>
-                    <!--<ImageCell ImageSource="{Binding Owner.AvatarUrl}" Text="{Binding FullName}" Detail="{Binding Description}"
-                        Command="{Binding Path=BindingContext.OpenRepoCommand, Source={x:Reference RepoSearch}}" CommandParameter="{Binding HtmlUrl}" />-->
+                <!--<ImageCell ImageSource="{Binding Owner.AvatarUrl}" Text="{Binding FullName}" Detail="{Binding Description}"
+                        Command="{Binding Path=BindingContext.OpenRepoCommand, Source={x:Reference RepoSearch}}" CommandParameter="{Binding HtmlUrl}" /> -->
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding OpenRepoCommand}" 
+                    EventArgsParameterPath="Item.HtmlUrl"/>
+            </ListView.Behaviors>
         </ListView>
     </StackLayout>
 </ContentPage>

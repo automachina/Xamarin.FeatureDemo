@@ -4,13 +4,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:maps="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True" 
     x:Class="FeatureDemo.Core.Views.MapPage"
     Title="{Binding Title}">
-	<ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding ZoomValue}" />
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content> 
+        <StackLayout>
+            <Slider Value="{Binding ZoomLevel, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Minimum="0.0" Maximum="1.0" />
+            <maps:TKCustomMap x:Name="AtmMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MapType="Hybrid" 
+                CustomPins="{Binding Pins}"  HasZoomEnabled="true" MapRegion="{Binding CurrentRegion, Mode=TwoWay}" MapClickedCommand="{Binding MapClickedCommand}" >
+                <maps:TKCustomMap.Behaviors>
+                    <b:EventToCommandBehavior
+                        EventName="PropertyChanged"
+                        Command="{Binding MapPropertyChangedCommand}" 
+                        CommandParameter="{Binding Source={x:Reference AtmMap}}" /><!--Passing the entire TKCustomMap as parameter-->
+                </maps:TKCustomMap.Behaviors>
+            </maps:TKCustomMap>
+        </StackLayout>
 	</ContentPage.Content>
-    <StackLayout>
-        <Slider Value="{Binding ZoomLevel}" HorizontalOptions="FillAndExpand" Minimum="0" Maximum="1" />
-        <maps:TKCustomMap x:Name="AtmMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MapType="Hybrid" CustomPins="{Binding Pins}" MapCenter="{Binding CurrentLocation}" HasZoomEnabled="true" MapRegion="{Binding CurrentRegion, Mode=TwoWay}"/>
-    </StackLayout>
 </ContentPage>
