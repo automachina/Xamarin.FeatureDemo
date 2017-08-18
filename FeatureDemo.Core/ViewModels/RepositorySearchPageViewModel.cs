@@ -2,7 +2,6 @@
 using Prism.Commands;
 using Prism.Navigation;
 using Octokit;
-using RestEase;
 using FeatureDemo.Core.Services;
 using Xamarin.Forms;
 using System.Collections.Generic;
