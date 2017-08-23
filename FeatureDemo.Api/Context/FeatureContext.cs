@@ -6,7 +6,7 @@ using FeatureDemo.Api.Utilities;
 
 namespace FeatureDemo.Api.Context
 {
-    public class FeatureContext : DbContext, IDbContext
+    public class FeatureContext : DbContext
     {
         public DbSet<Item> Items { get; set; }
         public DbSet<Atm> Atms { get; set; }
@@ -18,7 +18,7 @@ namespace FeatureDemo.Api.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connStr = AppSettings.FeatureDatabase;
-            if(!string.IsNullOrEmpty(connStr))
+            if(!string.IsNullOrEmpty(connStr) && !optionsBuilder.IsConfigured)
                 optionsBuilder.UseMySql(connStr);
         }
 
@@ -63,9 +63,6 @@ namespace FeatureDemo.Api.Context
 
             modelBuilder.Entity<Item>()
                         .HasKey(k => k.Id);
-			modelBuilder.Entity<Item>()
-						.Property(p => p.Id)
-                        .HasDefaultValueSql($"SELECT MAX({nameof(Item.Id)})+1 FROM {nameof(Item)}");
             modelBuilder.Entity<Item>().ToTable("Item");
             
         }

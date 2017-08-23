@@ -13,14 +13,17 @@ using Swashbuckle.AspNetCore.Swagger;
 using FeatureDemo.Api.Utilities;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System;
 
 namespace FeatureDemo.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            AppSettings.Configuration = configuration;
+            AppSettings.Environment = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -37,8 +40,8 @@ namespace FeatureDemo.Api
 
             ConfigureEntityFramework(services);
 
-            services.AddSingleton(typeof(IRepository), typeof(MockRepository));
-            services.AddTransient(typeof(IDbContext), typeof(FeatureContext));
+            //services.AddScoped(typeof(IRepository), typeof(MySqlRepository));
+            services.AddScoped(typeof(IRepository), typeof(MockRepository));
         }
 
         public void ConfigureEntityFramework(IServiceCollection services)
@@ -57,6 +60,16 @@ namespace FeatureDemo.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+			app.Use(async (context, nxt) =>
+			{
+				foreach (var header in context.Request.Headers)
+				{
+					Debug.WriteLine($"{header.Key} : {header.Value}");
+				}
+
+				await nxt?.Invoke();
+			});
 
             app.UseMvc();
 

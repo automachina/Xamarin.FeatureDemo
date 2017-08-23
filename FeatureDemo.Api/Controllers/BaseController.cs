@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FeatureDemo.Api.Repository;
+using FeatureDemo.Api.Utilities;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FeatureDemo.Api.Controllers
 {
@@ -16,5 +15,17 @@ namespace FeatureDemo.Api.Controllers
         {
             repo = _repo;
         }
+
+		internal Guid? InstitutionId
+		{
+			get
+			{
+                if (HttpContext != null && HttpContext.Request.Headers.ContainsKey(AppSettings.InstitutionHeader) && Guid.TryParse(HttpContext.Request.Headers["Institution"].ToString(), out Guid id))
+                {
+                    return id;
+                }
+                return null;
+			}
+		}
     }
 }

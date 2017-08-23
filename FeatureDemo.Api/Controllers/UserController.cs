@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using FeatureDemo.Api.Models;
@@ -20,8 +21,12 @@ namespace FeatureDemo.Api.Controllers
 		[HttpGet]
 		public IActionResult GetAllUsers()
 		{
+            if (InstitutionId.HasValue)
+            {
+                return GetInstitutionUsers(InstitutionId.Value);
+            }
             return Ok(repo.GetUsers());
-		}
+        }
 
 		// GET: api/user/institution/{Guid}
 		[HttpGet("institution/{id}")]

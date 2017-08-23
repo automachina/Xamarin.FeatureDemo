@@ -11,6 +11,8 @@
     <Folder Include="Repository\" />
     <Folder Include="Extensions\" />
     <Folder Include="Utilities\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -20,6 +20,7 @@ namespace FeatureDemo.Api.Controllers
         [HttpGet]
         public IActionResult GetAllAtms()
         {
+            repo.InstitutionId = InstitutionId;
             return Ok(repo.GetAtms());
         }
 

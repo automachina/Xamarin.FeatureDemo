@@ -6,6 +6,8 @@ namespace FeatureDemo.Api.Repository
 {
     public interface IRepository
     {
+        Guid? InstitutionId { get; set; }
+
         //Atm Api
         IEnumerable<Atm> GetAtms();
         IEnumerable<Atm> GetAtms(Guid institution);

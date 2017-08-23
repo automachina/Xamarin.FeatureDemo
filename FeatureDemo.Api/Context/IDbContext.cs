@@ -10,5 +10,7 @@ namespace FeatureDemo.Api.Context
         DbSet<Atm> Atms { get; set; }
         DbSet<User> Users { get; set; }
         DbSet<Institution> Institutions { get; set; }
+
+        void SaveChanges();
     }
 }

@@ -9,14 +9,18 @@ namespace FeatureDemo.Api.Utilities
 {
     public static class AppSettings
     {
-        static object GetConnfiguration(string name, IConfiguration config = null)
+
+        public static IConfiguration Configuration { get; set; }
+        public static IHostingEnvironment Environment { get; set; }
+
+        static object GetConnfiguration(string name, object defaultValue = null)
         {
-            return ConfigurationManager.AppSettings[name];
+            return Configuration?.GetValue<object>(name) ?? defaultValue;
         }
 
         static string GetConnectionString([CallerMemberName] string name = "", string defalutValue = "")
         {
-            return ConfigurationManager.ConnectionStrings[name]?.ToString() ?? defalutValue;
+            return Configuration?.GetConnectionString(name)?.ToString() ?? defalutValue;
         }
 
         static TResult GetProperty<TResult>(Func<Object, TResult> func, TResult defaultValue = default(TResult), [CallerMemberName] string name = "") where TResult : IConvertible
@@ -126,5 +130,7 @@ namespace FeatureDemo.Api.Utilities
         public static string FeatureDatabase => GetConnectionString();
 
         public static int MaxBatchSize => GetProperty(500);
+
+        public static string InstitutionHeader => "Institution";
     }
 }
