@@ -82,7 +82,7 @@
       <DependentUpon>HybridWebViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HybridWebViewPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\JsonSerializerX.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\JsonNetSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

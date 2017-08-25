@@ -136,7 +136,7 @@ namespace FeatureDemo.Api.Utilities
 
         public static int MaxBatchSize => GetProperty(500);
 
-        public static string InstitutionHeader => "Institution";
+        public static string InstitutionHeader => "X-ClientId";
 
         public static SymmetricSecurityKey SecurityKey => GetProperty(key => new SymmetricSecurityKey(Encoding.ASCII.GetBytes((string)key)));
 

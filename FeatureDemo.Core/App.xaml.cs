@@ -61,7 +61,7 @@ namespace FeatureDemo.Core
         protected override void RegisterTypes()
         {
             Container.RegisterType<Nav>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<IJsonSerializer,JsonSerializerX>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IJsonSerializer,JsonNetSerializer>(new ContainerControlledLifetimeManager());
             Nav = Container.Resolve<Nav>();
 
             Container.RegisterTypeForNavigation<RootPage>(Nav.Root);

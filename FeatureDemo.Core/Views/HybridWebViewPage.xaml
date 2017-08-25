@@ -11,14 +11,14 @@
     Title="{Binding Title}">
 	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <xlab:HybridWebView x:Name="WebView" Source="{Binding Source}" HeightRequest="1000" WidthRequest="1000">
-            <WebView.Behaviors>
+            <xlab:HybridWebView.Behaviors>
                     <b:EventToCommandBehavior
                         EventName="Navigating"
                         Command="{Binding NavigatingCommand}" />
                     <b:EventToCommandBehavior
                         EventName="Navigated"
                         Command="{Binding NavigatedCommand}" />
-                </WebView.Behaviors>
+                </xlab:HybridWebView.Behaviors>
         </xlab:HybridWebView>
     </StackLayout>	
 </ContentPage>
