@@ -20,7 +20,7 @@ namespace FeatureDemo.Api.Controllers
         [HttpGet]
         public IActionResult GetAllAtms()
         {
-            repo.InstitutionId = InstitutionId;
+            SetInstitutionId();
             return Ok(repo.GetAtms());
         }
 
@@ -37,8 +37,9 @@ namespace FeatureDemo.Api.Controllers
 
 		// GET api/atm/{Guid}
 		[HttpGet("{id}")]
-		public IActionResult GetUser(Guid id)
+		public IActionResult GetAtm(Guid id)
 		{
+            SetInstitutionId();
             var atm = repo.GetAtm(id);
 			if (atm == null)
 				return NotFound($"An Atm with the Id {id} was not found!");
@@ -50,6 +51,10 @@ namespace FeatureDemo.Api.Controllers
 		[HttpPost]
         public IActionResult Post([FromBody]Atm atm)
 		{
+            var modelStatus = ValidateModel(atm);
+            if (!modelStatus.IsValid) return BadRequest(modelStatus.ErrorMessage);
+            
+            SetInstitutionId();
             var newAtm = repo.AddAtm(atm);
 			if (newAtm == null)
 				return BadRequest("The new Atm was not added!");
@@ -61,6 +66,10 @@ namespace FeatureDemo.Api.Controllers
 		[HttpPut("{id}")]
 		public IActionResult Put(Guid id, [FromBody]Atm atm)
 		{
+			var modelStatus = ValidateModel(atm);
+			if (!modelStatus.IsValid) return BadRequest(modelStatus.ErrorMessage);
+
+            SetInstitutionId();
             var updAtm = repo.UpdateAtm(atm);
 			if (updAtm == null)
 				return BadRequest($"An Atm with the Id {atm.Id} could not be found!");
@@ -72,6 +81,7 @@ namespace FeatureDemo.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
+            SetInstitutionId();
             if (!repo.DeleteAtm(id))
             {
                 return BadRequest($"An Atm with an Id of {id} could not be found!");

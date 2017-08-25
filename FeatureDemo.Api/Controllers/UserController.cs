@@ -21,10 +21,7 @@ namespace FeatureDemo.Api.Controllers
 		[HttpGet]
 		public IActionResult GetAllUsers()
 		{
-            if (InstitutionId.HasValue)
-            {
-                return GetInstitutionUsers(InstitutionId.Value);
-            }
+            SetInstitutionId();
             return Ok(repo.GetUsers());
         }
 
@@ -43,6 +40,7 @@ namespace FeatureDemo.Api.Controllers
 		[HttpGet("{id}")]
 		public IActionResult GetUser(Guid id)
 		{
+            SetInstitutionId();
             var user = repo.GetUser(id);
             if (user == null)
                 return NotFound($"A User with the Id {id} was not found!");
@@ -54,6 +52,7 @@ namespace FeatureDemo.Api.Controllers
 		[HttpPost]
 		public IActionResult Post([FromBody]User user)
 		{
+            SetInstitutionId();
             var newUser = repo.AddUser(user);
             if (newUser == null)
                 return BadRequest("The new User was not added!");
@@ -65,6 +64,7 @@ namespace FeatureDemo.Api.Controllers
 		[HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody]User user)
 		{
+            SetInstitutionId();
             var updUser = repo.UpdateUser(user);
             if (updUser == null)
                 return BadRequest($"A User with the Id {user.Id} could not be found!");
@@ -76,6 +76,7 @@ namespace FeatureDemo.Api.Controllers
 		[HttpDelete("{id}")]
 		public IActionResult Delete(Guid id)
 		{
+            SetInstitutionId();
 			if (!repo.DeleteUser(id))
 			{
 				return BadRequest($"A User with the Id of {id} could not be found!");

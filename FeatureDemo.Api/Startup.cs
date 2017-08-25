@@ -3,17 +3,14 @@ using FeatureDemo.Api.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Identity;
 using Swashbuckle.AspNetCore.Swagger;
 using FeatureDemo.Api.Utilities;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System;
+using Microsoft.IdentityModel.Tokens;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace FeatureDemo.Api
 {
@@ -38,22 +35,30 @@ namespace FeatureDemo.Api
 				c.SwaggerDoc("v1", new Info { Title = "API V1", Version = "v1" });
 			});
 
-            ConfigureEntityFramework(services);
+			services.AddDbContext<FeatureContext>(
+				ops => ops.UseMySql(AppSettings.FeatureDatabase, mysqlOps => mysqlOps.MaxBatchSize(AppSettings.MaxBatchSize)), ServiceLifetime.Scoped);
 
-            //services.AddScoped(typeof(IRepository), typeof(MySqlRepository));
-            services.AddScoped(typeof(IRepository), typeof(MockRepository));
+            var signingCreds = new SigningCredentials(AppSettings.RsaSecurityKey, SecurityAlgorithms.RsaSha256Signature);
+
+            services.AddIdentityServer()
+                    .AddSigningCredential(signingCreds)
+                    .AddInMemoryApiResources(AppSettings.ApiResources)
+                    .AddInMemoryClients(AppSettings.ApiClients)
+                    .AddTestUsers(AppSettings.TestUsers);
+            
+            services.AddAuthentication(opts => opts.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(opts => {
+                        opts.Authority = "http://localhost:5000";
+                        opts.Audience = "fd.client";
+                        opts.RequireHttpsMetadata = false;
+                    });
+
+
+            services.AddScoped(typeof(IRepository), typeof(MySqlRepository));
+            //services.AddScoped(typeof(IRepository), typeof(MockRepository));
         }
 
-        public void ConfigureEntityFramework(IServiceCollection services)
-        {
-            Debug.WriteLine($"Using ConnectionString {AppSettings.FeatureDatabase}");
-            Debug.WriteLine($"Using MaxBatchSize of {AppSettings.MaxBatchSize}");
 
-            services.AddDbContext<FeatureContext>(
-                ops => ops.UseMySql(AppSettings.FeatureDatabase, mysqlOps => mysqlOps.MaxBatchSize(AppSettings.MaxBatchSize)), ServiceLifetime.Scoped);
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -70,6 +75,10 @@ namespace FeatureDemo.Api
 
 				await nxt?.Invoke();
 			});
+
+            app.UseIdentityServer();
+
+            app.UseAuthentication();
 
             app.UseMvc();
 

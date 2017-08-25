@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Text;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.IdentityModel.Tokens;
 
 namespace FeatureDemo.Api.Utilities
 {
@@ -23,7 +28,7 @@ namespace FeatureDemo.Api.Utilities
             return Configuration?.GetConnectionString(name)?.ToString() ?? defalutValue;
         }
 
-        static TResult GetProperty<TResult>(Func<Object, TResult> func, TResult defaultValue = default(TResult), [CallerMemberName] string name = "") where TResult : IConvertible
+        static TResult GetProperty<TResult>(Func<Object, TResult> func, TResult defaultValue = default(TResult), [CallerMemberName] string name = "")
         {
             var configVal = GetConnfiguration(name);
             if (configVal == null || func == null) return defaultValue;
@@ -132,5 +137,15 @@ namespace FeatureDemo.Api.Utilities
         public static int MaxBatchSize => GetProperty(500);
 
         public static string InstitutionHeader => "Institution";
+
+        public static SymmetricSecurityKey SecurityKey => GetProperty(key => new SymmetricSecurityKey(Encoding.ASCII.GetBytes((string)key)));
+
+        public static RsaSecurityKey RsaSecurityKey => new RsaSecurityKey(new RSACryptoServiceProvider(2048));
+
+        public static List<TestUser> TestUsers => new List<TestUser>() { new TestUser { SubjectId = "1", Username = "user1", Password = "password1" }, new TestUser { SubjectId = "2", Username = "user2", Password = "password2" } };
+
+        public static List<ApiResource> ApiResources => new List<ApiResource>() { new ApiResource("api1", "FeatureDemo Api") };
+
+        public static List<Client> ApiClients => new List<Client>() { new Client { ClientId = "fd.client", AllowedGrantTypes = { GrantType.ResourceOwnerPassword }, ClientSecrets = { new Secret("secret".Sha256()) }, AllowedScopes = { "api1" } } };
     }
 }

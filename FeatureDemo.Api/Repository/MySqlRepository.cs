@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using FeatureDemo.Api.Context;
 using FeatureDemo.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

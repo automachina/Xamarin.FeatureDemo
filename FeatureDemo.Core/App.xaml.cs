@@ -7,6 +7,8 @@ using Prism.Navigation;
 using Prism.Unity;
 using Prism.Common;
 using Xamarin.Forms;
+using XLabs.Serialization;
+using Newtonsoft.Json;
 
 namespace FeatureDemo.Core
 {
@@ -59,6 +61,7 @@ namespace FeatureDemo.Core
         protected override void RegisterTypes()
         {
             Container.RegisterType<Nav>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IJsonSerializer,JsonSerializerX>(new ContainerControlledLifetimeManager());
             Nav = Container.Resolve<Nav>();
 
             Container.RegisterTypeForNavigation<RootPage>(Nav.Root);

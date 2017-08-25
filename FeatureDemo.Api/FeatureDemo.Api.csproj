@@ -31,6 +31,11 @@
 	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
 	<PackageReference Include="JetBrains.Annotations" Version="11.0.0" />
 	<PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
+	<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
+	<PackageReference Include="IdentityServer4" Version="2.0.0-preview3" />
+	<PackageReference Include="IdentityServer4.EntityFramework" Version="1.0.1" />
+	<PackageReference Include="IdentityServer4.AspNetIdentity" Version="1.0.1" />
+	<PackageReference Include="XlabApi" Version="1.0.0.8" />
   </ItemGroup>
 
   <!-- Make sure the DotNetCliToolReferenc's have a PackageReferenc above!!! -->

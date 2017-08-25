@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage  
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True" 
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:xlab="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+    x:Class="FeatureDemo.Core.Views.HybridWebViewPage"
+    x:Name="HybridWebViewPage"
+    Title="{Binding Title}">
+	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <xlab:HybridWebView x:Name="WebView" Source="{Binding Source}" HeightRequest="1000" WidthRequest="1000">
+            <WebView.Behaviors>
+                    <b:EventToCommandBehavior
+                        EventName="Navigating"
+                        Command="{Binding NavigatingCommand}" />
+                    <b:EventToCommandBehavior
+                        EventName="Navigated"
+                        Command="{Binding NavigatedCommand}" />
+                </WebView.Behaviors>
+        </xlab:HybridWebView>
+    </StackLayout>	
+</ContentPage>
