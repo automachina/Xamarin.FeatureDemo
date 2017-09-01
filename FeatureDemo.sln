@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureDemo.Core.iOS", "iOS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureDemo.Api", "FeatureDemo.Api\FeatureDemo.Api.csproj", "{1C9A3F68-19CD-4E8C-AD49-29008D04EAE7}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FeatureDemo.Model", "FeatureDemo.Model\FeatureDemo.Model.shproj", "{E2F9692A-D46A-41C5-9649-812675E62B4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureDemo.Identity", "FeatureDemo.Identity\FeatureDemo.Identity.csproj", "{1845299C-9A2C-45F4-B858-FA8D2F078AD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -55,5 +59,17 @@ Global
 		{1C9A3F68-19CD-4E8C-AD49-29008D04EAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C9A3F68-19CD-4E8C-AD49-29008D04EAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C9A3F68-19CD-4E8C-AD49-29008D04EAE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Release|iPhone.Build.0 = Release|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1845299C-9A2C-45F4-B858-FA8D2F078AD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

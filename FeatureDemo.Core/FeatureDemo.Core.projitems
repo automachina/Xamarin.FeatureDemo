@@ -78,11 +78,13 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Atm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HybridWebViewPage.xaml.cs">
-      <DependentUpon>HybridWebViewPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HyperWebViewPage.cs">
+      <DependentUpon>HyperWebViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HybridWebViewPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HyperWebViewPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\JsonNetSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HyperWebView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\PrivateMemberExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -112,12 +114,13 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HybridWebViewPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HyperWebViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Events\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
   </ItemGroup>
 </Project>

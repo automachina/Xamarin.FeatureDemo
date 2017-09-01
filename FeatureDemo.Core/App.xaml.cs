@@ -78,6 +78,7 @@ namespace FeatureDemo.Core
             Container.RegisterTypeForNavigation<WebViewPage>(Nav.WebView);
             Container.RegisterTypeForNavigation<RepositorySearchPage>(Nav.RepoSearch);
             Container.RegisterTypeForNavigation<MapPage>(Nav.Map);
+            Container.RegisterTypeForNavigation<HyperWebViewPage>(Nav.HyperWebView);
         }
 
         /*

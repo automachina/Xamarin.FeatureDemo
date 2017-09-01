@@ -24,7 +24,7 @@ public class Nav
 			}
 		}
 
-		private static string GetPropertyName([CallerMemberName] string name = "") => name;
+	    static string GetPropertyName([CallerMemberName] string name = "") => name;
 
 		public static string Root => GetPropertyName();
 		public static string Home => GetPropertyName();
@@ -40,6 +40,7 @@ public class Nav
         public static string WebView => GetPropertyName();
         public static string RepoSearch => GetPropertyName();
         public static string Map => GetPropertyName();
+        public static string HyperWebView => GetPropertyName();
 
 		public class NavFluentInterface
 		{
@@ -132,6 +133,12 @@ public class Nav
                 _nav.Pages.Add(Nav.Map, parameters);
 				return this;
 			}
+
+            public NavFluentInterface HyperWebView(string parameters = null)
+            {
+                _nav.Pages.Add(Nav.HyperWebView, parameters);
+                return this;
+            }
 
 			public string Go
 			{

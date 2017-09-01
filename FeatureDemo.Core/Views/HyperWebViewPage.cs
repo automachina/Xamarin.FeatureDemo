@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace FeatureDemo.Core.Views
 {
-    public partial class HybridWebViewPage : ContentPage
+    public partial class HyperWebViewPage : ContentPage
     {
-        public HybridWebViewPage()
+        public HyperWebViewPage()
         {
             InitializeComponent();
         }

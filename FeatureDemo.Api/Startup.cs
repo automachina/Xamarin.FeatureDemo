@@ -9,7 +9,6 @@ using Swashbuckle.AspNetCore.Swagger;
 using FeatureDemo.Api.Utilities;
 using System.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
-using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace FeatureDemo.Api
@@ -37,18 +36,10 @@ namespace FeatureDemo.Api
 
 			services.AddDbContext<FeatureContext>(
 				ops => ops.UseMySql(AppSettings.FeatureDatabase, mysqlOps => mysqlOps.MaxBatchSize(AppSettings.MaxBatchSize)), ServiceLifetime.Scoped);
-
-            var signingCreds = new SigningCredentials(AppSettings.RsaSecurityKey, SecurityAlgorithms.RsaSha256Signature);
-
-            services.AddIdentityServer()
-                    .AddSigningCredential(signingCreds)
-                    .AddInMemoryApiResources(AppSettings.ApiResources)
-                    .AddInMemoryClients(AppSettings.ApiClients)
-                    .AddTestUsers(AppSettings.TestUsers);
             
             services.AddAuthentication(opts => opts.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opts => {
-                        opts.Authority = "http://localhost:5000";
+                        opts.Authority = "http://localhost:5100";
                         opts.Audience = "fd.client";
                         opts.RequireHttpsMetadata = false;
                     });
@@ -64,22 +55,18 @@ namespace FeatureDemo.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
 
-			app.Use(async (context, nxt) =>
-			{
-				foreach (var header in context.Request.Headers)
+				app.Use(async (context, nxt) =>
 				{
-					Debug.WriteLine($"{header.Key} : {header.Value}");
-				}
+					foreach (var header in context.Request.Headers)
+					{
+						Debug.WriteLine($"{header.Key} : {header.Value}");
+					}
 
-				await nxt?.Invoke();
-			});
-
-            app.UseIdentityServer();
-
-            app.UseAuthentication();
-
+					await nxt?.Invoke();
+				});
+            }
+            app.UseStaticFiles();
             app.UseMvc();
 
 			app.UseSwagger();

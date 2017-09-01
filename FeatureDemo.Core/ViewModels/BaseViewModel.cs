@@ -5,11 +5,19 @@ using FeatureDemo.Core.Models;
 using Prism.Unity;
 using Prism.Navigation;
 using System.Threading.Tasks;
+using unity = Microsoft.Practices.Unity;
 
 namespace FeatureDemo.Core.ViewModels
 {
     public class BaseViewModel : BindableBase, INavigationAware, IConfirmNavigationAsync, IConfirmNavigation, IDestructible
     {
+        unity.IUnityContainer _container;
+        [unity.Dependency]
+        protected unity.IUnityContainer Container 
+        {
+            get => _container;
+            set => _container = value;
+        }
 
         protected INavigationService _navigationService { get; }
 

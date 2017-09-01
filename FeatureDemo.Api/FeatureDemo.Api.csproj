@@ -12,7 +12,9 @@
     <Folder Include="Extensions\" />
     <Folder Include="Utilities\" />
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +38,7 @@
 	<PackageReference Include="IdentityServer4.EntityFramework" Version="1.0.1" />
 	<PackageReference Include="IdentityServer4.AspNetIdentity" Version="1.0.1" />
 	<PackageReference Include="XlabApi" Version="1.0.0.8" />
+	<PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
   <!-- Make sure the DotNetCliToolReferenc's have a PackageReferenc above!!! -->

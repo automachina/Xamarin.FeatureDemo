@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{E2F9692A-D46A-41C5-9649-812675E62B4A}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>FeatureDemo.Model</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ProfileCreateRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProfileCreateResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserLoginRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserLoginResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MenuItemResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MenuItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WebViewParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BrowserParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SmsParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EmailParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NavigateParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentStyleResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CapturesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Capture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostCaptureResultsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetPromotionsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Promotion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetServicesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostTelemetryRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Telemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VerificationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DebugArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PerformanceArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InteractionArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LifeCycleArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MetricType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InteractionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KeyValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetPromotionsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetCapturesRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetServicesRequest.cs" />
+  </ItemGroup>
+</Project>
