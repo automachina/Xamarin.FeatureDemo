@@ -277,6 +277,9 @@
     <Reference Include="Octokit">
       <HintPath>..\packages\Octokit.0.26.0\lib\netstandard1.1\Octokit.dll</HintPath>
     </Reference>
+    <Reference Include="XLabs.Serialization.JsonNET">
+      <HintPath>..\packages\XLabs.Serialization.JSON.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.JsonNET.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -292,6 +295,7 @@
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Helpers\FlatButtonRenderer.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="Controls\CustomWebViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -326,6 +330,10 @@
     <AndroidResource Include="Resources\drawable-xhdpi\atm_pin.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\atm_pin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <Import Project="..\FeatureDemo.Shared\FeatureDemo.Shared.projitems" Label="Shared" Condition="Exists('..\FeatureDemo.Shared\FeatureDemo.Shared.projitems')" />
   <Import Project="..\FeatureDemo.Core\FeatureDemo.Core.projitems" Label="Shared" Condition="Exists('..\FeatureDemo.Core\FeatureDemo.Core.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

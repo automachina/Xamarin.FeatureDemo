@@ -1,5 +1,4 @@
-﻿using System;
-namespace FeatureDemo.Api.Models
+﻿namespace FeatureDemo.Api.Models
 {
     public class Position
     {

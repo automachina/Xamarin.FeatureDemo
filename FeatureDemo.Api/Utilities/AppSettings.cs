@@ -140,6 +140,8 @@ namespace FeatureDemo.Api.Utilities
 
         public static SymmetricSecurityKey SecurityKey => GetProperty(key => new SymmetricSecurityKey(Encoding.ASCII.GetBytes((string)key)));
 
+        public static string ServerKey => GetProperty("The ServerKey setting is missing from the appsettings.json file!");
+
         public static RsaSecurityKey RsaSecurityKey => new RsaSecurityKey(new RSACryptoServiceProvider(2048));
 
         public static List<TestUser> TestUsers => new List<TestUser>() { new TestUser { SubjectId = "1", Username = "user1", Password = "password1" }, new TestUser { SubjectId = "2", Username = "user2", Password = "password2" } };

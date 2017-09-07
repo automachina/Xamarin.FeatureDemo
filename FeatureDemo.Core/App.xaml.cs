@@ -8,7 +8,8 @@ using Prism.Unity;
 using Prism.Common;
 using Xamarin.Forms;
 using XLabs.Serialization;
-using Newtonsoft.Json;
+using XLabs.Serialization.JsonNET;
+
 
 namespace FeatureDemo.Core
 {
@@ -61,7 +62,7 @@ namespace FeatureDemo.Core
         protected override void RegisterTypes()
         {
             Container.RegisterType<Nav>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<IJsonSerializer,JsonNetSerializer>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IJsonSerializer,JsonSerializer>(new ContainerControlledLifetimeManager());
             Nav = Container.Resolve<Nav>();
 
             Container.RegisterTypeForNavigation<RootPage>(Nav.Root);
@@ -78,49 +79,7 @@ namespace FeatureDemo.Core
             Container.RegisterTypeForNavigation<WebViewPage>(Nav.WebView);
             Container.RegisterTypeForNavigation<RepositorySearchPage>(Nav.RepoSearch);
             Container.RegisterTypeForNavigation<MapPage>(Nav.Map);
-            Container.RegisterTypeForNavigation<HyperWebViewPage>(Nav.HyperWebView);
+            Container.RegisterTypeForNavigation<CustomWebViewPage>(Nav.HyperWebView);
         }
-
-        /*
-        public static void SetMainPage()
-        {
-            if (!UseMockDataStore && !Settings.IsLoggedIn)
-            {
-                Current.MainPage = new NavigationPage(new LoginPage())
-                {
-                    BarBackgroundColor = (Color)Current.Resources["Primary"],
-                    BarTextColor = Color.White
-                };
-            }
-            else
-            {
-                GoToMainPage();
-            }
-        }
-
-        public static void GoToMainPage()
-        {
-            RootPage = new RootPage();
-            NavigationPage = new NavigationPage(new HomePage());
-
-            Current.MainPage = new TabbedPage
-            {
-                Children = {
-                    new NavigationPage(new ItemsPage())
-                    {
-                        Title = "Browse",
-                        //Icon = Device.OnPlatform("tab_feed.png", null, null)
-                        Icon = Device.RuntimePlatform == Device.iOS ? "trb_feed.png" : null
-                    },
-                    new NavigationPage(new AboutPage())
-                    {
-                        Title = "About",
-                        //Icon = Device.OnPlatform("tab_about.png", null, null)
-                        Icon = Device.RuntimePlatform == Device.iOS ? "trb_about.png" : null
-                    },
-                }
-            };
-        }
-        */
     }
 }

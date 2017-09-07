@@ -25,15 +25,15 @@ namespace FeatureDemo.Identity
 			AppSettings.Configuration = configuration;
 			AppSettings.Environment = env;
 
-			var serilog = new LoggerConfiguration()
-				.MinimumLevel.Verbose()
-				.Enrich.FromLogContext()
-				.WriteTo.File(@"identityserver4_log.txt")
-				.WriteTo.LiterateConsole(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message}{NewLine}{Exception}{NewLine}");
+			//var serilog = new LoggerConfiguration()
+				//.MinimumLevel.Verbose()
+				//.Enrich.FromLogContext()
+				//.WriteTo.File(@"identityserver4_log.txt")
+				//.WriteTo.LiterateConsole(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message}{NewLine}{Exception}{NewLine}");
 
-            loggerFactory
-                .AddDebug()
-                .AddSerilog(serilog.CreateLogger());
+            //loggerFactory
+                //.AddDebug()
+                //.AddSerilog(serilog.CreateLogger());
         }
 
         public IConfiguration Configuration { get; }
@@ -42,8 +42,8 @@ namespace FeatureDemo.Identity
         public void ConfigureServices(IServiceCollection services)
 		{
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            services.AddDbContext<ApplicationDbContext>(opts => opts.UseMySql(AppSettings.AuthDatabase));
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDbContext<ApplicationDbContext>(opts => opts.UseMySql(AppSettings.AuthDatabase));
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             var signingCreds = new SigningCredentials(AppSettings.RsaSecurityKey, SecurityAlgorithms.RsaSha256Signature);
 
@@ -80,11 +80,12 @@ namespace FeatureDemo.Identity
         {
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
+                //scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
                 scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-                scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>().Database.Migrate();
-                scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-
                 var context = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+                context?.Database.Migrate();
+
+
 
                 if (!context.Clients.Any())
                 {

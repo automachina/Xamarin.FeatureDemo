@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using FeatureDemo.Api.Models;
 using FeatureDemo.Api.Repository;
+using FeatureDemo.Api.Utilities;
+using FeatureDemo.Model.Client;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace FeatureDemo.Api.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	public class UserController : BaseController
 	{
 		public UserController(IRepository _repo) : base(_repo)
@@ -83,5 +83,31 @@ namespace FeatureDemo.Api.Controllers
 			}
 			return Ok();
 		}
+
+        // GET api/user/verify/{hash}
+        [HttpGet("verify/{hash}")]
+        public IActionResult Verify(string hash)
+        {
+            if (string.IsNullOrEmpty(hash)) return BadRequest(new StandardErrorResponse { Message = "Missing verification hash."});
+
+            var validHashes = new List<string> {
+                Hash.SHA1HashStringForUTF8String("8745619820110"), //87456 19820110 = BD3720A6B6048F0838AD1ECC813C273A0B066A77
+                Hash.SHA1HashStringForUTF8String("8570219750821")  //85702 19750821 = 5D94F40F6738D353A2F033201A0C09FF12D7247C
+            };
+
+            var match = validHashes.SingleOrDefault(h => h.ToUpper() == hash.ToUpper());
+            if (match == null) return BadRequest(new StandardErrorResponse { Message = "Verification hash not found." });
+
+            return Ok(new VerificationResponse { Token = Crypto.EncryptString(match,AppSettings.ServerKey) });
+        }
+
+        //// POST api/user/create
+        //[HttpPost("create")]
+        //public IActionResult Create(ProfileCreateRequest profile)
+        //{
+        //    if (!ModelState.IsValid || profile == null) return BadRequest(new StandardErrorResponse { Message = "Missing or invalide profile object." });
+
+        //    repo.CreateUser;
+        //}
 	}
 }

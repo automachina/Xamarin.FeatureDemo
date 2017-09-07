@@ -13,6 +13,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FeatureDemo.Model", "Featur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureDemo.Identity", "FeatureDemo.Identity\FeatureDemo.Identity.csproj", "{1845299C-9A2C-45F4-B858-FA8D2F078AD6}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FeatureDemo.Shared", "FeatureDemo.Shared\FeatureDemo.Shared.shproj", "{F6CDB195-AADB-4529-9F71-B2CBC9EC6FFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator

@@ -78,13 +78,15 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Atm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HyperWebViewPage.cs">
-      <DependentUpon>HyperWebViewPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CustomWebViewPage.cs">
+      <DependentUpon>CustomWebViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HyperWebViewPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CustomWebViewPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\JsonNetSerializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HyperWebView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\PrivateMemberExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomWebView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -114,7 +116,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HyperWebViewPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CustomWebViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

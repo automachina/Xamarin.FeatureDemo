@@ -4,7 +4,7 @@ using Prism.Unity;
 using UIKit;
 using TK.CustomMap.iOSUnified;
 using Xamarin;
-using Xamarin.Forms;
+using x = Xamarin.Forms;
         
 
 namespace FeatureDemo.Core.iOS
@@ -14,7 +14,7 @@ namespace FeatureDemo.Core.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Forms.Init();
+            x.Forms.Init();     
             FormsMaps.Init();
             TKCustomMapRenderer.InitMapRenderer();
             NativePlacesApi.Init();

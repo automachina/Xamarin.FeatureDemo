@@ -14,12 +14,13 @@ namespace FeatureDemo.Core.Extensions
 		/// <param name="obj">Object from where the Property Value is returned</param>
 		/// <param name="propName">Propertyname as string.</param>
 		/// <returns>PropertyValue</returns>
-		public static T GetPrivatePropertyValue<T>(this object obj, string propName)
+		public static T GetPrivatePropertyValue<T>(this object obj, string propName, bool ignoreCase = false)
 		{
 			if (obj == null) throw new ArgumentNullException("obj");
-			PropertyInfo pi = obj.GetType().GetProperty(propName,
-														BindingFlags.Public | BindingFlags.NonPublic |
-														BindingFlags.Instance);
+			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+			if (ignoreCase) flags = flags | BindingFlags.IgnoreCase;
+
+            PropertyInfo pi = obj.GetType().GetProperty(propName, flags);
 			if (pi == null)
 				throw new ArgumentOutOfRangeException("propName",
 													  string.Format("Property {0} was not found in Type {1}", propName,
@@ -35,14 +36,17 @@ namespace FeatureDemo.Core.Extensions
 		/// <param name="obj">Object from where the Field Value is returned</param>
 		/// <param name="propName">Field Name as string.</param>
 		/// <returns>FieldValue</returns>
-		public static T GetPrivateFieldValue<T>(this object obj, string propName)
+        public static T GetPrivateFieldValue<T>(this object obj, string propName, bool ignoreCase = false)
 		{
 			if (obj == null) throw new ArgumentNullException("obj");
 			Type t = obj.GetType();
 			FieldInfo fi = null;
+            BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+            if (ignoreCase) flags = flags | BindingFlags.IgnoreCase;
+
 			while (fi == null && t != null)
 			{
-				fi = t.GetField(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                fi = t.GetField(propName, flags);
 				t = t.BaseType;
 			}
 			if (fi == null)
@@ -61,9 +65,12 @@ namespace FeatureDemo.Core.Extensions
 		/// <param name="propName">Propertyname as string.</param>
 		/// <param name="val">Value to set.</param>
 		/// <returns>PropertyValue</returns>
-		public static void SetPrivatePropertyValue<T>(this object obj, string propName, T val)
+		public static void SetPrivatePropertyValue<T>(this object obj, string propName, T val, bool ignoreCase = false)
 		{
 			Type t = obj.GetType();
+			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+			if (ignoreCase) flags = flags | BindingFlags.IgnoreCase;
+
 			if (t.GetProperty(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance) == null)
 				throw new ArgumentOutOfRangeException("propName",
 													  string.Format("Property {0} was not found in Type {1}", propName,
@@ -82,14 +89,16 @@ namespace FeatureDemo.Core.Extensions
 		/// <param name="propName">Field name as string.</param>
 		/// <param name="val">the value to set</param>
 		/// <exception cref="ArgumentOutOfRangeException">if the Property is not found</exception>
-		public static void SetPrivateFieldValue<T>(this object obj, string propName, T val)
+		public static void SetPrivateFieldValue<T>(this object obj, string propName, T val, bool ignoreCase = false)
 		{
 			if (obj == null) throw new ArgumentNullException("obj");
 			Type t = obj.GetType();
 			FieldInfo fi = null;
+			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+			if (ignoreCase) flags = flags | BindingFlags.IgnoreCase;
 			while (fi == null && t != null)
 			{
-				fi = t.GetField(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                fi = t.GetField(propName, flags);
 				t = t.BaseType;
 			}
 			if (fi == null)
@@ -102,8 +111,8 @@ namespace FeatureDemo.Core.Extensions
         public static TReturen InvokePrivateMethod<TReturen>(this object obj, string methName, params object[] parameters)
         {
             if (obj == null) throw new ArgumentNullException("obj");
-            MethodInfo mi = obj.GetType().GetMethod(methName,
-							    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.IgnoreCase;
+            MethodInfo mi = obj.GetType().GetMethod(methName, flags);
 			if (mi == null)
 				throw new ArgumentOutOfRangeException("methName",
 													  string.Format("Method {0} was not found in Type {1}", methName,

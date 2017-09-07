@@ -18,9 +18,9 @@ namespace FeatureDemo.Core.Controls
 {
     public class HyperWebView : HybridWebView
     {
-		unity.IUnityContainer _container;
+		static unity.IUnityContainer _container;
 		[unity.Dependency]
-		internal unity.IUnityContainer Container
+		internal static unity.IUnityContainer Container
 		{
 			get => _container;
             set => _container = value;
@@ -62,6 +62,72 @@ namespace FeatureDemo.Core.Controls
 			set => SetValue(LoadContentCommandProperty, value);
 		}
 
+		public static readonly BindableProperty RegisteredActionsProperty =
+            BindableProperty.Create(nameof(RegisteredActions), typeof(Dictionary<string, Action<string>>), typeof(HyperWebView),
+		   null, BindingMode.TwoWay, null, OnRegisteredActionsChanged, OnRegisteredActionsChanging, null, null);
+
+		public Dictionary<string, Action<string>> RegisteredActions
+		{
+			get
+			{
+				var methodName = MethodBase.GetCurrentMethod().Name;
+                return this.GetPrivateFieldValue<Dictionary<string, Action<string>>>(methodName, true);
+			}
+
+            set
+            {
+                var methodName = MethodBase.GetCurrentMethod().Name;
+                var currentValue = this.GetPrivateFieldValue<Dictionary<string, Action<string>>>(methodName, true);
+                if (currentValue == value) return;
+
+                this.SetPrivateFieldValue(methodName, value, true);
+                OnPropertyChanged(nameof(methodName));
+            }
+		}
+
+		static void OnRegisteredActionsChanging(BindableObject bindable, object oldValue, object newValue)
+		{
+
+		}
+
+		static void OnRegisteredActionsChanged(BindableObject bindable, object oldValue, object newValue)
+		{
+
+		}
+
+		public static readonly BindableProperty RegisteredFunctionsProperty =
+			BindableProperty.Create(nameof(RegisteredFunctions), typeof(Dictionary<string, Func<string, object[]>>), typeof(HyperWebView),
+									null, BindingMode.TwoWay, null, OnRegisteredFunctionsChanged, OnRegisteredFunctionsChanging, null, null);
+
+		public Dictionary<string, Func<string, object[]>> RegisteredFunctions
+		{
+			get
+			{
+                var methodName = MethodBase.GetCurrentMethod().Name.TrimStart("get_".ToCharArray());
+                return this.GetPrivateFieldValue<Dictionary<string, Func<string, object[]>>>(methodName, true);
+			}
+
+			set
+			{
+				var methodName = MethodBase.GetCurrentMethod().Name;
+                var currentValue = this.GetPrivateFieldValue<Dictionary<string, Func<string, object[]>>>(methodName, true);
+				if (currentValue == value) return;
+
+				this.SetPrivateFieldValue(methodName, value, true);
+				OnPropertyChanged(nameof(methodName));
+			}
+		}
+
+		static void OnRegisteredFunctionsChanging(BindableObject bindable, object oldValue, object newValue)
+		{
+
+		}
+
+		static void OnRegisteredFunctionsChanged(BindableObject bindable, object oldValue, object newValue)
+		{
+
+		}
+
         public event EventHandler<EventArgs<Uri>> NavigatingEvent
         {
             add => Navigating += value;
@@ -87,7 +153,7 @@ namespace FeatureDemo.Core.Controls
         }
 
 
-        public HyperWebView() : this(new JsonNetSerializer())
+        public HyperWebView() : this(Container?.Resolve<IJsonSerializer>())
         {
         }
 

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width">
+        <title></title>
+    </head>
+    <body>
+        <h1>Hello World</h1>
+        <button onClick='javascript:CallCS();'>CallCS Callback</button>
+        <button onClick='javascript:NavigateBack();'><- Navigate Back</button>
+        <p id='output'></p>
+        <script type='text/javascript'>
+            function CallCS() {
+                console.log('CallSC Clicked');
+                Native('callCS', 'Hello World');
+            }
+            function NavigateBack() {
+                console.log('NavigateBack Clicked');
+                Native('navigateBack','');
+            }
+        </script>
+    </body>
+</html>

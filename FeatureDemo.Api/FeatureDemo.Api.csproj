@@ -39,6 +39,14 @@
 	<PackageReference Include="IdentityServer4.AspNetIdentity" Version="1.0.1" />
 	<PackageReference Include="XlabApi" Version="1.0.0.8" />
 	<PackageReference Include="System.ValueTuple" Version="4.4.0" />
+	<PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
+	<PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+	<PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+	<PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+	<PackageReference Include="System.Runtime" Version="4.3.0" />
+	<PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+	<PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+	<PackageReference Include="React.AspNet" Version="3.1.0" />
   </ItemGroup>
 
   <!-- Make sure the DotNetCliToolReferenc's have a PackageReferenc above!!! -->
@@ -48,4 +56,32 @@
 	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\Institution.cs" />
+    <Compile Remove="..\FeatureDemo.Model\Entities\User.cs" />
+  </ItemGroup>
+  <Import Project="..\FeatureDemo.Model\FeatureDemo.Model.projitems" Label="Shared" Condition="Exists('..\FeatureDemo.Model\FeatureDemo.Model.projitems')" />
 </Project>

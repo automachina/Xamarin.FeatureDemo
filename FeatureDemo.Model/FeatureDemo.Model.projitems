@@ -9,42 +9,52 @@
     <Import_RootNamespace>FeatureDemo.Model</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ProfileCreateRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ProfileCreateResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UserOption.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UserLoginRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UserLoginResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MenuItemResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MenuItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ActionType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WebViewParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BrowserParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CallParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SmsParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EmailParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NavigateParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ComponentStyleResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CapturesResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Capture.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PostCaptureResultsRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GetPromotionsResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Promotion.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GetServicesResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PostTelemetryRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Telemetry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VerificationResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EventType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DebugArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ErrorArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PerformanceArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)InteractionArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LifeCycleArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MetricType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)InteractionType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)KeyValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GetPromotionsRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GetCapturesRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GetServicesRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\ActionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\BrowserParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\CallParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\Capture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetCapturesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetComponentStyleResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\DebugArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\EmailParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\ErrorArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\EventType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetCapturesRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetPromotionsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetPromotionsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetServicesRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetServicesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\InteractionArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\InteractionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\KeyValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\LifeCycleArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\MenuItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetMenuItemResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\MetricType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\NavigateParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\PerformanceArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\PostCaptureResultsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\PostTelemetryRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\ProfileCreateRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\ProfileCreateResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\Promotion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\Service.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\SmsParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\Telemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\UserLoginRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\UserLoginResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\UserOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\VerificationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\WebViewParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\IActionParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\IEventArguments.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\StandardErrorResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Institution.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\User.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\GetVersionResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Client\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Entities\" />
   </ItemGroup>
 </Project>
